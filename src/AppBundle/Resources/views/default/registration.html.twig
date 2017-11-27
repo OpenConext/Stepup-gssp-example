@@ -9,13 +9,36 @@
 
         <div class="content">
             <div class="page-header clearfix">
-                <img src="{{  asset('bundles/app/images/example.png') }}" class="pull-left" alt="example" height="74">
-                <img src="{{  asset('bundles/app/images/surfnet.jpg') }}" class="pull-right" alt="SURFnet">
+                <img src="{{ asset('bundles/app/images/example.png') }}" class="pull-left" alt="example" height="74">
+                <img src="{{ asset('bundles/app/images/surfnet.jpg') }}" class="pull-right" alt="SURFnet">
             </div>
 
-            <h2>Login</h2>
+            <h2>Registration</h2>
 
-            <button id="button_enrol">Enrol</button>
+            {% if not requiresRegistration %}
+                <div class="alert alert-warning">
+                    <strong>Warning!</strong> There is no active state for AuthnRequest registration request,
+                    register the user will fail
+                </div>
+            {% endif %}
+
+            <form method="post">
+                <label for="NameID">Subject NameID</label>
+                <br>
+                <input id="NameID" name="NameID" size="50" type="text" value="{{ NameID }}">
+                <br>
+
+                <br>
+                <button id="button_register" name="action" value="register">Register user</button>
+                <br>
+                <br>
+                <label for="message">Error message</label>
+                <br>
+                <input id="message" name="message" size="50" type="text" value="random error">
+                <br>
+                <br>
+                <button id="button_error" name="action" value="error">Return saml error response</button>
+            </form>
 
         </div><!-- /content -->
 
@@ -31,15 +54,4 @@
         </footer>
 
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#button_enrol").click(function(){
-                document.location = "{{ return_url }}";
-            });
-        });
-    </script>
 {% endblock %}

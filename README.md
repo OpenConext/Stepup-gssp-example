@@ -50,9 +50,13 @@ It's configured with auto connect IDE_KEY=phpstorm.
 Tests and metrics
 ======================
 
-To run all required test you can run the following command from the dev env:
+To run all required test you can run the following commands from the dev env:
 
-```composer test```
+``` 
+    ./bin/bootstrap_phantomjs.sh
+
+    composer test 
+```
 
 Every part can be run separately. Check "scripts" section of the composer.json file for the different options.
 

@@ -1,3 +1,2 @@
-services:
-    Surfnet\SamlBundle\Http\HttpBinding:
-        alias: 'surfnet_saml.http.redirect_binding'
+services: []
+

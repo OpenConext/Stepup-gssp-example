@@ -9,6 +9,7 @@
     app_web_root: "{{ app_root }}/web"
     vhost_name: gssp.stepup.example.com
     nginx_ssl_certificate_subject: "/C=NL/ST=Netherlands/L=Amsterdam/O=TEST/CN={{ ansible_fqdn }}"
+    ntpd_leap_seconds_url: ''
 
   handlers:
    - name: restart php-fpm
