@@ -57,7 +57,7 @@ before_script:
 script:
   # Test if the website is actually running
   - phantomjs --config=./phantomjs.json < /dev/null &
-  - composer test
+  - composer test-ci
 
 after_script:
   - cat $TRAVIS_BUILD_DIR/error.log
