@@ -2,12 +2,32 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}GSSP example project!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script>
+            // Write js errors to the body.
+            window.onerror = function (msg, url, lineNo, columnNo, error) {
+                var message = [
+                    'Message: ' + msg,
+                    'URL: ' + url,
+                    'Line: ' + lineNo,
+                    'Column: ' + columnNo,
+                    'Error object: ' + JSON.stringify(error)
+                ].join(' - ');
+                var span = document.createElement('span');
+                span.style.display = 'none';
+                span.classList.add('js-error');
+                span.innerText = message;
+                document.body.appendChild(span);
+            };
+        </script>
     </head>
     <body>
         {% block body %}{% endblock %}
+        <script src="{{ asset('jquery-1.11.3.min.js') }}"></script>
+        <script src="{{ asset('bootstrap.min.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

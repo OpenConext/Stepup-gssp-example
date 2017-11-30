@@ -10,12 +10,17 @@ default:
             sessions:
                 symfony2:
                     symfony2: ~
+            selenium2:
+              wd_host: "http://127.0.0.1:8646/wd/hub"
+              capabilities: { "browser": "firefox", "version": "14"}
         Behatch\Extension: ~
     suites:
         app_bundle:
             type: symfony_bundle
             contexts:
-                - AppBundle\Features\Context\WebContext:
+                - AppBundle\Features\Context\WebContext
+                - AppBundle\Features\Context\ErrorReportContext
+                - Behat\MinkExtension\Context\MinkContext
                 - behatch:context:xml
             bundle: 'AppBundle'
 

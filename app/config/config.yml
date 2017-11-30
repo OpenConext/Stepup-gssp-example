@@ -33,12 +33,20 @@ framework:
     php_errors:
         log: true
 
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:
+      - SurfnetGsspBundle
+    filters:
+        cssrewrite: ~
+
 surfnet_saml:
     hosted:
         identity_provider:
             enabled: true
-            service_provider_repository: surfnet_gssp.saml.service_provider_repository
-            sso_route: sso
+            service_provider_repository: surfnet_saml.remote.service_providers
+            sso_route: gssp_saml_sso
             public_key: "%saml_idp_publickey%"
             private_key: "%saml_idp_privatekey%"
         metadata:
@@ -46,12 +54,13 @@ surfnet_saml:
             public_key: "%saml_metadata_publickey%"
             private_key: "%saml_metadata_privatekey%"
     remote:
-        identity_provider:
-            enabled: true
-            entity_id: "%saml_remote_idp_entity_id%"
-            sso_url: "%saml_remote_idp_sso_url%"
-            certificate_file: "%saml_remote_idp_certificate%"
+        service_providers:
+            - entity_id: "%saml_remote_sp_entity_id%"
+              certificate_file: "%saml_remote_sp_certificate%"
+              assertion_consumer_service_url: "%saml_remote_sp_acs%"
 
+surfnet_gssp:
+    registration_route: app_identity_registration
 
 # Twig Configuration
 twig:
