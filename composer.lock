@@ -1329,12 +1329,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenConext/Stepup-gssp-bundle.git",
-                "reference": "f8a23441902b31b7a00f1be7cf68f9e9b62ae934"
+                "reference": "8595306b967178bc9f566b63d34e382ee5bbb429"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenConext/Stepup-gssp-bundle/zipball/f8a23441902b31b7a00f1be7cf68f9e9b62ae934",
-                "reference": "f8a23441902b31b7a00f1be7cf68f9e9b62ae934",
+                "url": "https://api.github.com/repos/OpenConext/Stepup-gssp-bundle/zipball/8595306b967178bc9f566b63d34e382ee5bbb429",
+                "reference": "8595306b967178bc9f566b63d34e382ee5bbb429",
                 "shasum": ""
             },
             "require": {
@@ -1447,7 +1447,7 @@
                 "source": "https://github.com/OpenConext/Stepup-gssp-bundle/tree/master",
                 "issues": "https://github.com/OpenConext/Stepup-gssp-bundle/issues"
             },
-            "time": "2017-11-29T14:25:27+00:00"
+            "time": "2017-12-07T10:03:47+00:00"
         },
         {
             "name": "surfnet/stepup-saml-bundle",

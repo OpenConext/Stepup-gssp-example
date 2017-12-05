@@ -103,6 +103,14 @@
         ],
         "phpunit-coverage": "vendor/bin/phpunit tests --coverage-php coverage/reports/unit.cov",
 
+        "encore": [
+            "./node_modules/.bin/encore"
+        ],
+
+        "frond-end-install": [
+            "yarn install"
+        ],
+
         "symfony-scripts": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
@@ -112,7 +120,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "post-install-cmd": [
-            "@symfony-scripts"
+            "@symfony-scripts",
+            "@frond-end-install"
         ],
         "post-update-cmd": [
             "@symfony-scripts"
