@@ -1,2 +1,3 @@
 - name: openmicroscopy.nginx-ssl-selfsigned
 - name: reallyenglish.ntpd
+- name: geerlingguy.nodejs

@@ -10,7 +10,7 @@ parameters:
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -61,6 +61,7 @@ surfnet_saml:
 
 surfnet_gssp:
     registration_route: app_identity_registration
+    authentication_route: app_identity_authentication
 
 # Twig Configuration
 twig:

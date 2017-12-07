@@ -23,6 +23,7 @@
 /web/bundles/
 /web/css/
 /web/js/
+/node_modules/
 
 # Vagrant files #
 #################

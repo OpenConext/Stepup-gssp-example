@@ -47,6 +47,7 @@ before_script:
 
   # Install dependencies
   - composer install
+  - composer encore dev
 
   # Check if everything runs properly
   - ps aux | grep php-fpm

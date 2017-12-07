@@ -5,53 +5,30 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
+    <h2>Registration</h2>
 
-        <div class="content">
-            <div class="page-header clearfix">
-                <img src="{{ asset('bundles/app/images/example.png') }}" class="pull-left" alt="example" height="74">
-                <img src="{{ asset('bundles/app/images/surfnet.jpg') }}" class="pull-right" alt="SURFnet">
-            </div>
+    {% if not requiresRegistration %}
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> There is no active state for AuthnRequest registration request,
+            register the user will fail
+        </div>
+    {% endif %}
 
-            <h2>Registration</h2>
+    <form method="post">
+        <label for="NameID">Subject NameID</label>
+        <br>
+        <input id="NameID" name="NameID" size="50" type="text" value="{{ NameID }}">
+        <br>
 
-            {% if not requiresRegistration %}
-                <div class="alert alert-warning">
-                    <strong>Warning!</strong> There is no active state for AuthnRequest registration request,
-                    register the user will fail
-                </div>
-            {% endif %}
-
-            <form method="post">
-                <label for="NameID">Subject NameID</label>
-                <br>
-                <input id="NameID" name="NameID" size="50" type="text" value="{{ NameID }}">
-                <br>
-
-                <br>
-                <button id="button_register" name="action" value="register">Register user</button>
-                <br>
-                <br>
-                <label for="message">Error message</label>
-                <br>
-                <input id="message" name="message" size="50" type="text" value="random error">
-                <br>
-                <br>
-                <button id="button_error" name="action" value="error">Return saml error response</button>
-            </form>
-
-        </div><!-- /content -->
-
-        <footer>
-            <div class="row-fluid">
-                <div class="span8 offset2">
-                    <hr>
-                    <ul class="nav nav-pills">
-                        {#<li><a href="#" onclick="window.history.back();return false;">{{ 'enrol.cancel' | trans }}</a></li><!-- TODO -->#}
-                    </ul>
-                </div>
-            </div>
-        </footer>
-
-    </div>
+        <br>
+        <button id="button_register" name="action" value="register">Register user</button>
+        <br>
+        <br>
+        <label for="message">Error message</label>
+        <br>
+        <input id="message" name="message" size="50" type="text" value="random error">
+        <br>
+        <br>
+        <button id="button_error" name="action" value="error">Return saml error response</button>
+    </form>
 {% endblock %}
