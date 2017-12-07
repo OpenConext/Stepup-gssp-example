@@ -10,16 +10,16 @@ Example Generic SAML Stepup Provider.
 How to create your own Stepup Provider
 ======================================
 
-There are two ways to approach this. 
+There are two ways how you can approach this. 
 
 Copy this GSSP example repository
 ---------------------------------
 
-One of the benefits of using this repository is that it contains many pre-configured tools:
+The benefits of using this repository that it contains many pre-configured tooling.
 
 * Metrics & test tooling [testing.md](./docs/testing.md)
-* Development environment provisioned by Vagrant 
-* Pre-configured travis.yml for CI integration
+* Development environment previsioned by vagrant 
+* Pre configure travis.yml for CI integration
 * Default SurfContext styling [frontend_tooling.md](./docs/frontend_tooling.md)
 
 1) Clone and checkout this repository
@@ -27,11 +27,11 @@ One of the benefits of using this repository is that it contains many pre-config
     * composer.json name and description
     * this readme.md file
     * Replace 'gssp.stepup.example.com' in all files with your own hostename
-3) Install the copied project. (See [Development environment](#) section of this README.md file)
+3) Install the copied project. (See [Development environment](#) section of this readme file)
 4) Implement your authentication & registration logic in DefaultController::registrationAction and DefaultController::authenticateAction. 
 5) Feel free to rename and change this example clone for your needs.
 
-Install from a clean or existing Symfony project
+Install from a clean or exiting symfony project
 ------------------------------------
 
 1) [Install symphony](http://symfony.com/doc/current/setup.html) 
@@ -40,7 +40,7 @@ Install from a clean or existing Symfony project
 Development environment
 ======================
 
-To get started, first setup the development environment. The dev env is a virtual machine. Every task described here is required to run
+To get started, first setup the development environment. The dev. env. is a virtual machine. Every task described here is required to run
 from that machine.  
 
 Requirements

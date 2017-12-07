@@ -5,6 +5,14 @@ isolation. This allows for a test suite that runs very fast, and can therefore b
 loop as short as possible. The test suite can also be executed locally as well as on a continuous integration server,
 which also helps the developer to get feedback as quickly as possible.
 
+You can run all test combined with:
+
+```bash
+./bin/bootstrap_phantomjs.sh
+
+composer test
+``` 
+
 ## Continuous integration
 
 Using Travis CI, the full test suite will be run against every pull request and has to pass before it can be merged.
@@ -23,7 +31,13 @@ test code as well as production code;
  - PHP CodeSniffer ensures that the code adheres to the chosen coding standard (PSR-2);
  - PHP Copy-Paste Detector ensures that there is no substantial duplication within the source code.
  
-If any of those tools fails, the build will fail and the issue has to be resolved before a pull request can be merged.
+You can run these tools manually with composer:
+
+```bash
+composer lint
+
+composer static-analysis
+``` 
 
 ## Unit testing
 
@@ -32,7 +46,11 @@ the application. A unit is the smallest testable part of code, typically a class
 provide design feedback during the development phase, to ensure that code conforms to specifications and to ensure that
 future modifications do not introduce unintended side effects.
 
-Unit tests will be written for domain and application code, and will be run as part of every CI build.
+You can run these tools manually with composer:
+
+```bash
+composer phpunit
+``` 
 
 ## Acceptance testing
 
@@ -42,7 +60,13 @@ with stand-ins in order to make the test suite faster.
 
 Acceptance tests will be written for all command handlers and will be run as part of every CI build.
 
-Tools: Behat
+You can run these tools manually with composer:
+
+```bash
+./bin/bootstrap_phantomjs.sh
+
+composer behat
+``` 
 
 ## Security testing
 
@@ -52,10 +76,8 @@ fail.
 
 Tools: SensioLabs Security Checker
 
-## Code coverage
-By default code coverage reports are generated for all available test types (unit, integration, web-tests, acceptance). 
+You can run these tools manually with composer:
 
-Code coverage can be viewed at `web/coverage/index.html`.
-
-Tests can be run without coverage by using do so by providing the `-no-coverage` suffix. For example when you want to
-run the unit tests without coverage use: `phpunit-no-coverage`
+```bash
+composer security-tests
+``` 
