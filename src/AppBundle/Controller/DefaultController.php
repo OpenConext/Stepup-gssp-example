@@ -18,19 +18,23 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Surfnet\GsspBundle\Service\AuthenticationRegistrationService;
+use Surfnet\GsspBundle\Service\AuthenticationService;
+use Surfnet\GsspBundle\Service\RegistrationService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    private $authenticationRegistrationService;
+    private $authenticatinService;
+    private $registrationService;
 
     public function __construct(
-        AuthenticationRegistrationService $authenticationRegistrationService
+        AuthenticationService $authenticationService,
+        RegistrationService $registrationService
     ) {
-        $this->authenticationRegistrationService = $authenticationRegistrationService;
+        $this->authenticatinService = $authenticationService;
+        $this->registrationService = $registrationService;
     }
 
     /**
@@ -53,21 +57,51 @@ class DefaultController extends Controller
     {
         // replace this example code with whatever you need
         if ($request->get('action') === 'register') {
-            $this->authenticationRegistrationService->register($request->get('NameID'));
-            return $this->authenticationRegistrationService->createRedirectResponse();
+            $this->registrationService->register($request->get('NameID'));
+            return $this->registrationService->replyToServiceProvider();
         }
 
         if ($request->get('action') === 'error') {
-            $this->authenticationRegistrationService->error($request->get('message'));
-            return $this->authenticationRegistrationService->createRedirectResponse();
+            $this->registrationService->reject($request->get('message'));
+            return $this->registrationService->replyToServiceProvider();
         }
 
-        $requiresRegistration = $this->authenticationRegistrationService->requiresRegistration();
+        $requiresRegistration = $this->registrationService->registrationRequired();
         $response = new Response(null, $requiresRegistration ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
 
         return $this->render('AppBundle:default:registration.html.twig', [
             'requiresRegistration' => $requiresRegistration,
             'NameID' => uniqid('test-prefix-', 'test-entropy'),
+        ], $response);
+    }
+
+    /**
+     * @Route("/authentication", name="app_identity_authentication")
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function authenticationAction(Request $request)
+    {
+        $nameId = $this->authenticatinService->getNameId();
+
+        // replace this example code with whatever you need
+        if ($request->get('action') === 'authenticate') {
+            // Implement the logic to verify authentication by the corresponding nameId.
+            $this->authenticatinService->authenticate();
+            return $this->authenticatinService->replyToServiceProvider();
+        }
+
+        if ($request->get('action') === 'error') {
+            $this->authenticatinService->reject($request->get('message'));
+            return $this->authenticatinService->replyToServiceProvider();
+        }
+
+        $requiresRegistration = $this->authenticatinService->authenticationRequired();
+        $response = new Response(null, $requiresRegistration ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+
+        return $this->render('AppBundle:default:authentication.html.twig', [
+            'requiresAuthentication' => $requiresRegistration,
+            'NameID' => $nameId ?: 'unknown',
         ], $response);
     }
 }

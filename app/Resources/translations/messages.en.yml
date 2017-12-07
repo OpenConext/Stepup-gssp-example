@@ -7,6 +7,7 @@ page.header.stepup-gssp-bundle: GSSP-Bundle
 
 page.navigation.route.homepage: Home
 page.navigation.route.app_identity_registration: Registration
+page.navigation.route.app_identity_authentication: Authentication
 page.navigation.route.gssp_saml_sso: SSO
 page.navigation.route.gssp_saml_sso_return: SSO return
 page.navigation.route.gssp_saml_metadata: Metadata
@@ -38,6 +39,9 @@ page.index.body.authentication.step5.click_authenticate: 5) Click the 'Authentic
 page.route.description.app_identity_registration: |
   This endpoint is linked in the menu for demo and descriptive purpose.
   The application endpoint that handles the registration, this is the entry point to implement the custom registration logic.
+page.route.description.app_identity_authentication: |
+    This endpoint is linked in the menu for demo and descriptive purpose.
+    The application endpoint that handles the authentication, this is the entry point to implement the custom authentication logic.
 page.route.description.gssp_saml_sso: |
   This endpoint is linked in the menu for demo and descriptive purpose.
   It's provided by the GSSP bundle that handles the AuthnRequest saml request from Service Provider.
