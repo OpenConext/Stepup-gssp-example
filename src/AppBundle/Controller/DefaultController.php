@@ -26,14 +26,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    private $authenticatinService;
+    private $authenticationService;
     private $registrationService;
 
     public function __construct(
         AuthenticationService $authenticationService,
         RegistrationService $registrationService
     ) {
-        $this->authenticatinService = $authenticationService;
+        $this->authenticationService = $authenticationService;
         $this->registrationService = $registrationService;
     }
 
@@ -82,21 +82,21 @@ class DefaultController extends Controller
      */
     public function authenticationAction(Request $request)
     {
-        $nameId = $this->authenticatinService->getNameId();
+        $nameId = $this->authenticationService->getNameId();
 
         // replace this example code with whatever you need
         if ($request->get('action') === 'authenticate') {
             // Implement the logic to verify authentication by the corresponding nameId.
-            $this->authenticatinService->authenticate();
-            return $this->authenticatinService->replyToServiceProvider();
+            $this->authenticationService->authenticate();
+            return $this->authenticationService->replyToServiceProvider();
         }
 
         if ($request->get('action') === 'error') {
-            $this->authenticatinService->reject($request->get('message'));
-            return $this->authenticatinService->replyToServiceProvider();
+            $this->authenticationService->reject($request->get('message'));
+            return $this->authenticationService->replyToServiceProvider();
         }
 
-        $requiresRegistration = $this->authenticatinService->authenticationRequired();
+        $requiresRegistration = $this->authenticationService->authenticationRequired();
         $response = new Response(null, $requiresRegistration ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
 
         return $this->render('AppBundle:default:authentication.html.twig', [
