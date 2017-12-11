@@ -75,11 +75,8 @@
           }
         }
 
-        &.profile {
+        &.push-right {
           margin-left: auto;
-          @include phone {
-            display: none;
-          }
         }
 
         &.border-left {

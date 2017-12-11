@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a65d689bfdc50f744961e4cfd25b7e6d",
+    "content-hash": "6ed0276dbf3a30cb4089272887ce6729",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -1325,16 +1325,16 @@
         },
         {
             "name": "surfnet/stepup-gssp-bundle",
-            "version": "dev-master",
+            "version": "dev-feature/authentication",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenConext/Stepup-gssp-bundle.git",
-                "reference": "1b879d7fddf0154009eae3f32e895659f8625e62"
+                "reference": "fa7bf82564e9d04e20be51e47fa1e17002e9993b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenConext/Stepup-gssp-bundle/zipball/1b879d7fddf0154009eae3f32e895659f8625e62",
-                "reference": "1b879d7fddf0154009eae3f32e895659f8625e62",
+                "url": "https://api.github.com/repos/OpenConext/Stepup-gssp-bundle/zipball/fa7bf82564e9d04e20be51e47fa1e17002e9993b",
+                "reference": "fa7bf82564e9d04e20be51e47fa1e17002e9993b",
                 "shasum": ""
             },
             "require": {
@@ -1444,10 +1444,10 @@
             ],
             "description": "Generic SAML Stepup Provider bundle.",
             "support": {
-                "source": "https://github.com/OpenConext/Stepup-gssp-bundle/tree/master",
+                "source": "https://github.com/OpenConext/Stepup-gssp-bundle/tree/feature/authentication",
                 "issues": "https://github.com/OpenConext/Stepup-gssp-bundle/issues"
             },
-            "time": "2017-12-07T10:53:24+00:00"
+            "time": "2017-12-11T09:48:54+00:00"
         },
         {
             "name": "surfnet/stepup-saml-bundle",
