@@ -34,7 +34,7 @@ One of the benefits of using this repository is that it contains many pre-config
 Install from a clean or exiting symfony project
 ------------------------------------
 
-1) [Install symphony](http://symfony.com/doc/current/setup.html) 
+1) [Install Symfony](http://symfony.com/doc/current/setup.html) 
 2) Follow the instructions from the [GSSP bundle](https://github.com/OpenConext/Stepup-gssp-bundle)
 
 Development environment

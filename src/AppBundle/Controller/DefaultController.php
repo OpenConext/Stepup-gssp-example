@@ -26,14 +26,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    private $authenticatinService;
+    private $authenticationService;
     private $registrationService;
 
     public function __construct(
         AuthenticationService $authenticationService,
         RegistrationService $registrationService
     ) {
-        $this->authenticatinService = $authenticationService;
+        $this->authenticationService = $authenticationService;
         $this->registrationService = $registrationService;
     }
 
@@ -43,26 +43,24 @@ class DefaultController extends Controller
     public function indexAction()
     {
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        return $this->render('default/index.html.twig');
     }
 
     /**
      * @Route("/registration", name="app_identity_registration")
      *
-     * @throws \InvalidArgumentException
+     * See @see RegistrationService for a more clean example.
      */
     public function registrationAction(Request $request)
     {
-        // replace this example code with whatever you need
-        if ($request->get('action') === 'register') {
-            $this->registrationService->register($request->get('NameID'));
+        if ($request->get('action') === 'error') {
+            $this->registrationService->reject($request->get('message'));
             return $this->registrationService->replyToServiceProvider();
         }
 
-        if ($request->get('action') === 'error') {
-            $this->registrationService->reject($request->get('message'));
+        // replace this example code with whatever you need
+        if ($request->get('action') === 'register') {
+            $this->registrationService->register($request->get('NameID'));
             return $this->registrationService->replyToServiceProvider();
         }
 
@@ -76,27 +74,28 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/authentication", name="app_identity_authentication")
+     * Replace this example code with whatever you need.
      *
-     * @throws \InvalidArgumentException
+     * See @see AuthenticationService for a more clean example.
+     *
+     * @Route("/authentication", name="app_identity_authentication")
      */
     public function authenticationAction(Request $request)
     {
-        $nameId = $this->authenticatinService->getNameId();
-
-        // replace this example code with whatever you need
-        if ($request->get('action') === 'authenticate') {
-            // Implement the logic to verify authentication by the corresponding nameId.
-            $this->authenticatinService->authenticate();
-            return $this->authenticatinService->replyToServiceProvider();
-        }
+        $nameId = $this->authenticationService->getNameId();
 
         if ($request->get('action') === 'error') {
-            $this->authenticatinService->reject($request->get('message'));
-            return $this->authenticatinService->replyToServiceProvider();
+            $this->authenticationService->reject($request->get('message'));
+            return $this->authenticationService->replyToServiceProvider();
         }
 
-        $requiresRegistration = $this->authenticatinService->authenticationRequired();
+        if ($request->get('action') === 'authenticate') {
+            // The application should very if the user matches the nameId.
+            $this->authenticationService->authenticate();
+            return $this->authenticationService->replyToServiceProvider();
+        }
+
+        $requiresRegistration = $this->authenticationService->authenticationRequired();
         $response = new Response(null, $requiresRegistration ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
 
         return $this->render('AppBundle:default:authentication.html.twig', [
