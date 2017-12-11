@@ -44,6 +44,15 @@
                 <a href="https://github.com/OpenConext/Stepup-gssp-bundle"
                    target="_blank">{{ 'page.header.stepup-gssp-bundle'|trans }}</a>
             </li>
+            <li class="push-right">
+                <ul class="language-selector">
+                    {% for lang in ['en', 'nl_NL'] %}
+                        <li {{ app.request.getLocale() == lang ? 'class="active"' :'' }}>
+                            <a href="{{ path('local', {lang: lang}) }}">{{ lang|trans }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
@@ -59,16 +68,23 @@
 
 
     {% if current_route == 'app_identity_registration' %}
-        <div class='alert'><i class="fa fa-info-circle" aria-hidden="true"> {{ 'page.route.description.app_identity_registration'|trans|raw }}</i></div>
+        <div class='alert'><i class="fa fa-info-circle"
+                              aria-hidden="true"> {{ 'page.route.description.app_identity_registration'|trans|raw }}</i>
+        </div>
     {% endif %}
     {% if current_route == 'app_identity_authentication' %}
-        <div class='alert'><i class="fa fa-info-circle" aria-hidden="true"> {{ 'page.route.description.app_identity_authentication'|trans|raw }}</i></div>
+        <div class='alert'><i class="fa fa-info-circle"
+                              aria-hidden="true"> {{ 'page.route.description.app_identity_authentication'|trans|raw }}</i>
+        </div>
     {% endif %}
     {% if current_route == 'gssp_saml_sso' %}
-        <div class='alert'><i class="fa fa-info-circle" aria-hidden="true"> {{ 'page.route.description.gssp_saml_sso'|trans|raw }}</i></div>
+        <div class='alert'><i class="fa fa-info-circle"
+                              aria-hidden="true"> {{ 'page.route.description.gssp_saml_sso'|trans|raw }}</i></div>
     {% endif %}
     {% if current_route == 'gssp_saml_sso_return' %}
-        <div class='alert'><i class="fa fa-info-circle" aria-hidden="true"> {{ 'page.route.description.gssp_saml_sso_return'|trans|raw }}</i></div>
+        <div class='alert'><i class="fa fa-info-circle"
+                              aria-hidden="true"> {{ 'page.route.description.gssp_saml_sso_return'|trans|raw }}</i>
+        </div>
     {% endif %}
 
     {% block body_container %}

@@ -53,3 +53,6 @@ page.route.description.gssp_saml_sso_return: |
   - If the application expects a registration or authentication but the user is not yet registered or authenticated by the application, the user will be redirected back to the corresponding endpoint.
   </br>
   - Shows a submit button when JavaScript is disabled
+
+en: EN
+nl_NL: NL
