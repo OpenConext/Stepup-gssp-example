@@ -20,7 +20,7 @@ page.index.body.intro: |
   SDK is configured with demo configuration and can provide registration and authentication to the demo SP.
 
 page.index.body.sdk_discription: |
-  The AppBundle contains the example registration and authentication endpoint. This is the main entry for your application. See DefaultController::registrationAction and DefaultController::authenticateAction.
+  The AppBundle contains the example registration and authentication endpoints. This is the main entry for your application. See DefaultController::registrationAction and DefaultController::authenticateAction.
   This is the place to implement the logic of your IdP. For more information read the README.md file of this project.
 
 page.index.body.registration.title: Registration flow
@@ -37,19 +37,22 @@ page.index.body.authentication.step4.click_login: 4) Click the 'login' button
 page.index.body.authentication.step5.click_authenticate: 5) Click the 'Authenticate user' button
 
 page.route.description.app_identity_registration: |
-  This endpoint is linked in the menu for demo and documentation purpose.
-  The application endpoint that handles the registration, this is the entry point to implement the custom registration logic.
+  This path is linked in the menu for demo and documentation purpose.
+  The application path that handles the registration, this is the entry point to implement the custom registration logic.
 page.route.description.app_identity_authentication: |
-  This endpoint is linked in the menu for demo and documentation purpose.
-  The application endpoint that handles the authentication, this is the entry point to implement the custom authentication logic.
+  This path is linked in the menu for demo and documentation purpose.
+  The application path that handles the authentication, this is the entry point to implement the custom authentication logic.
 page.route.description.gssp_saml_sso: |
-  This endpoint is linked in the menu for demo and documentation purpose.
+  This path is linked in the menu for demo and documentation purpose.
   It's provided by the GSSP bundle that handles the AuthnRequest saml request from Service Provider.
-  Then it decides if it needs to go to the application registration endpoint or application authentication endpoint.
+  Then it decides if it needs to go to the application registration path or application authentication path.
 page.route.description.gssp_saml_sso_return: |
-  This endpoint is linked in the menu for demo and documentation purpose.
+  This path is linked in the menu for demo and documentation purpose.
   It's provided by the GSSP bundle that handles the saml response back to the Service provider.</br>
   </br>
-  - If the application expects a registration or authentication but the user is not yet registered or authenticated by the application, the user will be redirected back to the corresponding endpoint.
+  - If the application expects a registration or authentication but the user is not yet registered or authenticated by the application, the user will be redirected back to the corresponding path.
   </br>
   - Shows a submit button when JavaScript is disabled
+
+en: EN
+nl_NL: NL
