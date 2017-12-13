@@ -18,19 +18,23 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Surfnet\GsspBundle\Service\AuthenticationRegistrationService;
+use Surfnet\GsspBundle\Service\AuthenticationService;
+use Surfnet\GsspBundle\Service\RegistrationService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    private $authenticationRegistrationService;
+    private $authenticationService;
+    private $registrationService;
 
     public function __construct(
-        AuthenticationRegistrationService $authenticationRegistrationService
+        AuthenticationService $authenticationService,
+        RegistrationService $registrationService
     ) {
-        $this->authenticationRegistrationService = $authenticationRegistrationService;
+        $this->authenticationService = $authenticationService;
+        $this->registrationService = $registrationService;
     }
 
     /**
@@ -39,35 +43,64 @@ class DefaultController extends Controller
     public function indexAction()
     {
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        return $this->render('default/index.html.twig');
     }
 
     /**
      * @Route("/registration", name="app_identity_registration")
      *
-     * @throws \InvalidArgumentException
+     * See @see RegistrationService for a more clean example.
      */
     public function registrationAction(Request $request)
     {
+        if ($request->get('action') === 'error') {
+            $this->registrationService->reject($request->get('message'));
+            return $this->registrationService->replyToServiceProvider();
+        }
+
         // replace this example code with whatever you need
         if ($request->get('action') === 'register') {
-            $this->authenticationRegistrationService->register($request->get('NameID'));
-            return $this->authenticationRegistrationService->createRedirectResponse();
+            $this->registrationService->register($request->get('NameID'));
+            return $this->registrationService->replyToServiceProvider();
         }
 
-        if ($request->get('action') === 'error') {
-            $this->authenticationRegistrationService->error($request->get('message'));
-            return $this->authenticationRegistrationService->createRedirectResponse();
-        }
-
-        $requiresRegistration = $this->authenticationRegistrationService->requiresRegistration();
+        $requiresRegistration = $this->registrationService->registrationRequired();
         $response = new Response(null, $requiresRegistration ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
 
         return $this->render('AppBundle:default:registration.html.twig', [
             'requiresRegistration' => $requiresRegistration,
             'NameID' => uniqid('test-prefix-', 'test-entropy'),
+        ], $response);
+    }
+
+    /**
+     * Replace this example code with whatever you need.
+     *
+     * See @see AuthenticationService for a more clean example.
+     *
+     * @Route("/authentication", name="app_identity_authentication")
+     */
+    public function authenticationAction(Request $request)
+    {
+        $nameId = $this->authenticationService->getNameId();
+
+        if ($request->get('action') === 'error') {
+            $this->authenticationService->reject($request->get('message'));
+            return $this->authenticationService->replyToServiceProvider();
+        }
+
+        if ($request->get('action') === 'authenticate') {
+            // The application should very if the user matches the nameId.
+            $this->authenticationService->authenticate();
+            return $this->authenticationService->replyToServiceProvider();
+        }
+
+        $requiresRegistration = $this->authenticationService->authenticationRequired();
+        $response = new Response(null, $requiresRegistration ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+
+        return $this->render('AppBundle:default:authentication.html.twig', [
+            'requiresAuthentication' => $requiresRegistration,
+            'NameID' => $nameId ?: 'unknown',
         ], $response);
     }
 }
