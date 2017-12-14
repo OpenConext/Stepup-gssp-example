@@ -62,28 +62,41 @@
             {% set translatekey = "page.navigation.route." ~ route %}
             <a href="{{ path(route) }}" {% if current_route == route %} class='active'{% endif %}>{{ translatekey|trans }}</a>
         {% endfor %}
+        {% if app.environment == 'dev' %}
+            <a href="{{ path('sp_demo') }}" {% if current_route == 'sp_demo' %} class='active'{% endif %}>{{ 'page.navigation.route.sp_demo'|trans }}</a>
+        {% endif %}
     </div>
 </div>
 <div class="page-container">
 
-
     {% if current_route == 'app_identity_registration' %}
-        <div class='alert'><i class="fa fa-info-circle"
-                              aria-hidden="true"> {{ 'page.route.description.app_identity_registration'|trans|raw }}</i>
+        <div class='alert'>
+            <div><i class="fa fa-info-circle" aria-hidden="true"></i>{{ 'page.route.description.documentation_purpose'|trans }}</div>
+            <pre>{{ 'page.route.description.app_identity_registration'|trans }}</pre>
         </div>
     {% endif %}
     {% if current_route == 'app_identity_authentication' %}
-        <div class='alert'><i class="fa fa-info-circle"
-                              aria-hidden="true"> {{ 'page.route.description.app_identity_authentication'|trans|raw }}</i>
+        <div class='alert'>
+            <div><i class="fa fa-info-circle" aria-hidden="true"></i>{{ 'page.route.description.documentation_purpose'|trans }}</div>
+            <pre>{{ 'page.route.description.app_identity_authentication'|trans }}</pre>
         </div>
     {% endif %}
     {% if current_route == 'gssp_saml_sso' %}
-        <div class='alert'><i class="fa fa-info-circle"
-                              aria-hidden="true"> {{ 'page.route.description.gssp_saml_sso'|trans|raw }}</i></div>
+        <div class='alert'>
+            <div><i class="fa fa-info-circle" aria-hidden="true"></i>{{ 'page.route.description.documentation_purpose'|trans }}</div>
+            <pre>{{ 'page.route.description.gssp_saml_sso'|trans }}</pre>
+        </div>
     {% endif %}
     {% if current_route == 'gssp_saml_sso_return' %}
-        <div class='alert'><i class="fa fa-info-circle"
-                              aria-hidden="true"> {{ 'page.route.description.gssp_saml_sso_return'|trans|raw }}</i>
+        <div class='alert'>
+            <div><i class="fa fa-info-circle" aria-hidden="true"></i>{{ 'page.route.description.documentation_purpose'|trans }}</div>
+            <pre>{{ 'page.route.description.gssp_saml_sso_return'|trans }}</pre>
+        </div>
+    {% endif %}
+    {% if current_route == 'sp_demo' %}
+        <div class='alert'>
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <pre style="display: inline">{{ 'page.route.description.sp_demo'|trans }}</pre>
         </div>
     {% endif %}
 
