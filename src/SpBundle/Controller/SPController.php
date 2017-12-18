@@ -20,10 +20,13 @@ namespace SpBundle\Controller;
 use DOMDocument;
 use SAML2_Certificate_PrivateKeyLoader;
 use SAML2_Configuration_PrivateKey;
+use SAML2_DOMDocumentFactory;
+use SAML2_Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Surfnet\GsspBundle\Service\RegistrationService;
 use Surfnet\SamlBundle\Entity\IdentityProvider;
 use Surfnet\SamlBundle\Entity\ServiceProvider;
+use Surfnet\SamlBundle\Http\Exception\AuthnFailedSamlResponseException;
 use Surfnet\SamlBundle\Http\PostBinding;
 use Surfnet\SamlBundle\SAML2\AuthnRequest;
 use Surfnet\SamlBundle\SAML2\AuthnRequestFactory;
@@ -100,18 +103,31 @@ final class SPController extends Controller
      */
     public function assertionConsumerServiceAction(Request $request)
     {
-        $response = $this->postBinding->processResponse($request, $this->identityProvider, $this->serviceProvider);
         $xmlResponse = $request->request->get('SAMLResponse');
         $xml = base64_decode($xmlResponse);
+        try {
+            $response = $this->postBinding->processResponse($request, $this->identityProvider, $this->serviceProvider);
 
-        return $this->render('SpBundle:default:acs.html.twig', [
-            'requestId' => $response->getId(),
-            'nameId' => $response->getNameId(),
-            'issuer' => $response->getIssuer(),
-            'relayState' => $request->get(AuthnRequest::PARAMETER_RELAY_STATE, ''),
-            'authenticatingAuthority' => $response->getAuthenticatingAuthority(),
-            'xml' => $this->toFormattedXml($xml),
-        ]);
+            return $this->render('SpBundle:default:acs.html.twig', [
+                'requestId' => $response->getId(),
+                'nameId' => $response->getNameId(),
+                'issuer' => $response->getIssuer(),
+                'relayState' => $request->get(AuthnRequest::PARAMETER_RELAY_STATE, ''),
+                'authenticatingAuthority' => $response->getAuthenticatingAuthority(),
+                'xml' => $this->toFormattedXml($xml),
+            ]);
+        } catch (AuthnFailedSamlResponseException $e) {
+            $samlResponse = $this->toUnsignedErrorResponse($xml);
+
+            return $this->render('SpBundle:default:acs-error-response.html.twig', [
+                'error' => $e->getMessage(),
+                'status' => $samlResponse->getStatus(),
+                'requestId' => $samlResponse->getId(),
+                'issuer' => $samlResponse->getIssuer(),
+                'relayState' => $request->get(AuthnRequest::PARAMETER_RELAY_STATE, ''),
+                'xml' => $this->toFormattedXml($xml),
+            ]);
+        }
     }
 
     /**
@@ -127,6 +143,7 @@ final class SPController extends Controller
         $domxml->preserveWhiteSpace = false;
         $domxml->formatOutput = true;
         $domxml->loadXML($xml);
+
         return $domxml->saveXML();
     }
 
@@ -143,6 +160,7 @@ final class SPController extends Controller
         $queryParams[AuthnRequest::PARAMETER_SIGNATURE_ALGORITHM] = $securityKey->type;
         $toSign = http_build_query($queryParams);
         $signature = $securityKey->signData($toSign);
+
         return $toSign.'&Signature='.urlencode(base64_encode($signature));
     }
 
@@ -159,6 +177,21 @@ final class SPController extends Controller
         );
         $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'private']);
         $key->loadKey($privateKey->getKeyAsString());
+
         return $key;
+    }
+
+    /**
+     * @param string $xml
+     *
+     * @return SAML2_Response
+     */
+    private function toUnsignedErrorResponse($xml)
+    {
+        $previous = libxml_disable_entity_loader(true);
+        $asXml = SAML2_DOMDocumentFactory::fromString($xml);
+        libxml_disable_entity_loader($previous);
+
+        return SAML2_Response::fromXML($asXml->documentElement);
     }
 }
