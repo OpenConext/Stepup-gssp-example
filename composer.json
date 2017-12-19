@@ -3,7 +3,7 @@
     "license": "Apache-2.0",
     "description": "Example Generic SAML Stepup Provider.",
     "type": "project",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
@@ -34,8 +34,7 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "surfnet/stepup-gssp-bundle": "dev-master",
-        "symfony/assetic-bundle": "^2.8",
+        "surfnet/stepup-gssp-bundle": "^1.0",
         "symfony/monolog-bundle": "^3.1.0",
         "symfony/polyfill-apcu": "^1.0",
         "symfony/symfony": "3.3.*",
