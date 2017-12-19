@@ -38,18 +38,21 @@ class DefaultController extends Controller
     }
 
     /**
+     * Replace this example code with whatever you need/
+     *
      * @Route("/", name="homepage")
      */
     public function indexAction()
     {
-        // replace this example code with whatever you need
         return $this->render('default/index.html.twig');
     }
 
     /**
-     * @Route("/registration", name="app_identity_registration")
+     * Replace this example code with whatever you need.
      *
      * See @see RegistrationService for a more clean example.
+     *
+     * @Route("/registration", name="app_identity_registration")
      */
     public function registrationAction(Request $request)
     {
@@ -58,7 +61,6 @@ class DefaultController extends Controller
             return $this->registrationService->replyToServiceProvider();
         }
 
-        // replace this example code with whatever you need
         if ($request->get('action') === 'register') {
             $this->registrationService->register($request->get('NameID'));
             return $this->registrationService->replyToServiceProvider();
@@ -95,11 +97,11 @@ class DefaultController extends Controller
             return $this->authenticationService->replyToServiceProvider();
         }
 
-        $requiresRegistration = $this->authenticationService->authenticationRequired();
-        $response = new Response(null, $requiresRegistration ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        $requiresAuthentication = $this->authenticationService->authenticationRequired();
+        $response = new Response(null, $requiresAuthentication ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
 
         return $this->render('AppBundle:default:authentication.html.twig', [
-            'requiresAuthentication' => $requiresRegistration,
+            'requiresAuthentication' => $requiresAuthentication,
             'NameID' => $nameId ?: 'unknown',
         ], $response);
     }
