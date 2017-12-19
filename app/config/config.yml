@@ -33,14 +33,6 @@ framework:
     php_errors:
         log: true
 
-assetic:
-    debug:          "%kernel.debug%"
-    use_controller: false
-    bundles:
-      - SurfnetGsspBundle
-    filters:
-        cssrewrite: ~
-
 surfnet_saml:
     hosted:
         identity_provider:
