@@ -24,7 +24,7 @@ Authentication and registration flows
 -------------------------------------
 
 The application provides internal (SpBundle) and a remote service provider. Instructions for this are given 
-on the homepage of this example project [Homepage](https://gssp.stepup.example.com/app_dev.PHP/).
+on the homepage of this example project [Homepage](https://gssp.stepup.example.com/app_dev.php/).
 
 ![flow](docs/flow.png)
 <!---
