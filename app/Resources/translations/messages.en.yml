@@ -36,7 +36,7 @@ page.index.body.registration.external.step4.click_register: 4) Click the 'Regist
 page.index.body.authentication.title: Authentication flow
 page.index.body.authentication.external.step1.go_to_sp: 1) Go to
 page.index.body.authentication.external.step2.select_idp: 2) Select '%idp-entity-id%' from the 'Identity Provide' list
-page.index.body.authentication.external.step3.fill_subject: 3) Fill the user NameId in the 'subject' field
+page.index.body.authentication.external.step3.fill_subject: 3) Fill in the user NameId in the 'subject' field
 page.index.body.authentication.external.step4.click_login: 4) Click the 'login' button
 page.index.body.authentication.external.step5.click_authenticate: 5) Click the 'Authenticate user' button
 
@@ -45,32 +45,31 @@ page.index.body.registration.internal.step2.click_login: 2) Click the 'login' bu
 page.index.body.registration.internal.step3.click_register: 3) Click the 'Register user' button
 
 page.index.body.authentication.internal.step1.go_to_sp: 1) Go to
-page.index.body.authentication.internal.step2.fill_subject: 2) Fill the user NameId in the 'nameId' field
+page.index.body.authentication.internal.step2.fill_subject: 2) Fill in the user NameId in the 'nameId' field
 page.index.body.authentication.internal.step3.click_login: 3) Click the 'login' button
 page.index.body.authentication.internal.step4.click_authenticate: 4) Click the 'Authenticate user' button
 
 page.route.description.documentation_purpose: |
-  This path is linked in the menu for demo and documentation purpose.
+  This path is linked in the menu for demo and documentation purposes.
 
 page.route.description.app_identity_registration: |
-  The application path that handles the registration, this is the entry point to implement the custom registration logic.
+  The application path that handles registration, custom registration logic is implemented here.
 
 page.route.description.app_identity_authentication: |
-  The application path that handles the authentication, this is the entry point to implement the custom authentication logic.
+  The application path that handles authentication, custom authentication logic is implemented here.
 
 page.route.description.gssp_saml_sso: >
-  It's provided by the GSSP bundle that handles the AuthnRequest saml request from Service Provider.
-  Then it decides if it needs to go to the application registration path or application authentication path.
+  The user is redirected to this URL where the SAML AuthnRequest is handled by offering the user either registration or authentication.
 
 page.route.description.gssp_saml_sso_return: |
-  It's provided by the GSSP bundle that handles the saml response back to the Service provider.
+  The user is redirected to this URL after completing authentication or registration within the GSSP application. The user is then redirected back to the service provider with a SAML response.
 
-  - If the application expects a registration or authentication but the user is not yet registered or authenticated by the application, the user will be redirected back to the corresponding path.
+  - If the application expects registration or authentication but the user is not yet registered or authenticated by the application, the user will be redirected back to the corresponding path.
   - Shows a submit button when JavaScript is disabled
 
 page.route.description.sp_demo: |
   Demo service provider to test the second factor IdP application with.
-  This is not part of the second factor IdP and can only be used in development mode.
+  This is not part of the second factor IdP and can only be used in development (app_dev.php) mode.
 
 en: EN
 nl_NL: NL

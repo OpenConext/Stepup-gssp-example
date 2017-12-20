@@ -50,19 +50,18 @@ page.index.body.authentication.internal.step3.click_login: 3) Klik op de knop 'G
 page.index.body.authentication.internal.step4.click_authenticate: 4) Klik op de knop 'Gebruiker verifiëren'
 
 page.route.description.documentation_purpose: |
-    Deze url is in het menu gekoppeld voor demo en documentatie doeleinden.
+    Deze url is in het menu gekoppeld voor demo- en documentatiedoeleinden.
 
 page.route.description.app_identity_registration: |
-    Het applicatiepad dat de registratie afhandelt, dit is het startpunt om de aangepaste registratielogica te implementeren.
+    Het applicatiepad dat de registratie afhandelt, eigen registratielogica wordt hier geïmplementeerd.
 page.route.description.app_identity_authentication: |
-    Het applicatiepad dat de authenticatie afhandelt, dit is het toegangspunt om de aangepaste authenticatielogica te implementeren.
+    Het applicatiepad dat de authenticatie afhandelt, eigen authenticatielogica wordt hier geïmplementeerd.
 page.route.description.gssp_saml_sso: |
-    Het wordt geleverd door de GSSP-bundel die de aanvraag AuthnRequest SAML van de serviceprovider afhandelt.
-    Vervolgens bepaalt het of het naar het registratiepad van de toepassing of het pad voor toepassingsverificatie moet gaan.
+    De gebruiker wordt naar deze URL gestuurd waar het SAML AuthnRequest  wordt afgehandeld door de gebruiker registratie of authenticatie aan te bieden.
 page.route.description.gssp_saml_sso_return: |
-    Het wordt geleverd door de GSSP-bundel die de SAML-response afhandelt naar de serviceprovider.
+    De gebruiker wordt naar deze URL gestuurd na het afronden van registratie of authenticatie binnen de GSSP-applicatie. De gebruiker wordt hierna teruggestuurd naar de service provider met een SAML response.
 
-    - Als de toepassing een registratie of verificatie verwacht maar de gebruiker nog niet is geregistreerd of geverifieerd door de toepassing, wordt de gebruiker teruggeleid naar het desbetreffende pad.
+    - Als registratie of authenticatie wordt verwacht maar de gebruiker nog niet is geregistreerd of geauthenticeerd door de applicatie, wordt de gebruiker teruggeleid naar het desbetreffende pad.
     - Toont een submit button als JavaScript is uitgeschakeld
 page.route.description.sp_demo: |
     Demo url voor het ontvangen van de SAML AuthnRequest response van de IdP.
