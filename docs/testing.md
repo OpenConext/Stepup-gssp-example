@@ -1,9 +1,8 @@
 # Testing
 
-Because of the chosen [architecture](architecture.md) we have the ability to test different parts of the code in
-isolation. This allows for a test suite that runs very fast, and can therefore be run very often, keeping the feedback
-loop as short as possible. The test suite can also be executed locally as well as on a continuous integration server,
-which also helps the developer to get feedback as quickly as possible.
+Different parts of the code can be tested in isolation. This allows for a test suite that runs very fast, and can
+therefore be run very often, keeping the feedback loop as short as possible. The test suite can also be executed locally
+as well as on a continuous integration server, which also helps the developer to get feedback as quickly as possible.
 
 You can run all test combined with:
 
