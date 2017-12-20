@@ -15,14 +15,14 @@ page.navigation.route.sp_demo: Demo SP
 
 page.footer.terms: Terms and Conditions
 
-page.index.title: Welcome to Generic SAML Stepup Provider SDK
+page.index.title: Welcome to the Generic SAML Stepup Provider SDK
 page.index.body.intro: |
-  Your application is ready. You can use this example to start imlementing your authentication.
-  SDK is configured with demo configuration and can provide registration and authentication to the demo SP.
+  The application is ready for use. This example project can be used to develop your own implemention of a GSSP verification method.
+  It demonstrates registration and authentication of second factor tokens initiated by a dummy service provider.
 
 page.index.body.sdk_discription: |
-  The AppBundle contains the example registration and authentication endpoints. This is the main entry for your application. See DefaultController::registrationAction and DefaultController::authenticateAction.
-  This is the place to implement the logic of your IdP. For more information read the README.md file of this project.
+  This Symfony Framework application contains an AppBundle where the example registration and authentication endpoints are implemented. This is the main entry of the application. See DefaultController::registrationAction and DefaultController::authenticateAction.
+  This is the place to implement the logic of the GSSP identity provider. For more information read the README.md file of this project.
 
 page.index.external_sp: External service provider
 page.index.internal_sp: Internal service provider

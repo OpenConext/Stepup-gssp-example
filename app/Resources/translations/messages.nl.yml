@@ -17,12 +17,12 @@ page.footer.terms: Algemene voorwaarden
 
 page.index.title: Welkom bij Generieke SAML Stepup Provider SDK
 page.index.body.intro: |
-    U applicatie is klaar voor gebruik. U kunt dit voorbeeld gebruiken om uw verificatie te implementeren.
-    SDK is geconfigureerd met demo-configuratie en kan registratie en authenticatie bieden voor een service provider.
+    De applicatie is klaar voor gebruik. Dit voorbeeldproject kan gebruikt worden om een eigen implementatie van een GSSP verificatiemiddel te ontwikkelen.
+    Het demonstreert registratie en authenticatie van second factor tokens geïnitieerd door een dummy service provider.
 
 page.index.body.sdk_discription: |
-    De AppBundle bevat de voorbeeldregistratie en verificatie-endpoints. Dit is het hoofddoel voor uw toepassing. Zie DefaultController::registrationAction en DefaultController::authenticateAction.
-    Dit is de plaats om de logica van u IdP te implementeren. Lees voor meer informatie de README.md van dit project.
+    Deze Symfony Framework applicatie bestaat uit een AppBundle waar de voorbeeld registratie- en verificatie-endpoints zijn geïmplementeerd. Dit is het startpunt van de applicatie. Zie DefaultController::registrationAction en DefaultController::authenticateAction.
+    Dit is de plaats om de logica van de GSSP identity provider te implementeren. Lees voor meer informatie de README.md van dit project.
 
 page.index.external_sp: External service provider
 page.index.internal_sp: Internal service provider
