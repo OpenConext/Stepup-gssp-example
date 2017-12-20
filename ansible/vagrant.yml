@@ -30,6 +30,9 @@
 
   - include: tasks/main.yml
 
+  - include: tasks/plantuml.yml
+
   roles:
   - reallyenglish.ntpd
   - geerlingguy.nodejs
+  - geerlingguy.java
