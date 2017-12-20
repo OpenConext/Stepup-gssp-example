@@ -70,8 +70,6 @@ Install composer dependencies:
 
 Build frond-end assets:
 
-``` composer install ```
-
 ``` composer encore dev ``` or ``` composer encore prod ``` for production 
 
 If everything goes as planned you can go to:
