@@ -11,7 +11,7 @@ _default:
         working-copy-check: ~
         display-last-changes: ~
         composer-stability-check: ~
-        tests-check: {command: composer test-ci}
+        tests-check: {command: composer test}
 
     # GENERAL CONFIG
     #  Apply to all branches except the one from the 'branch-specific' section

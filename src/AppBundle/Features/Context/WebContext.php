@@ -17,7 +17,9 @@
 
 namespace AppBundle\Features\Context;
 
+use Behat\Behat\Event\ScenarioEvent;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Mink\Driver\GoutteDriver;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Behat\Behat\Context\Context;
@@ -72,22 +74,22 @@ class WebContext implements Context, KernelAwareContext
     }
 
     /**
-     * Set mink driver to selenium2
+     * Set mink driver to goutte
      *
-     * @BeforeScenario javascript
+     * @BeforeScenario @remote
      */
-    public function setJsDriver()
+    public function setGoutteDriver()
     {
         $this->previousMinkSession = $this->minkContext->getMink()->getDefaultSessionName();
-        $this->minkContext->getMink()->setDefaultSessionName('selenium2');
+        $this->minkContext->getMink()->setDefaultSessionName('goutte');
     }
 
     /**
-     * Set mink driver to selenium2
+     * Set mink driver to goutte
      *
-     * @AfterScenario javascript
+     * @AfterScenario @remote
      */
-    public function resetJsDriver()
+    public function resetGoutteDriver()
     {
         $this->minkContext->getMink()->setDefaultSessionName($this->previousMinkSession);
     }
@@ -131,36 +133,6 @@ class WebContext implements Context, KernelAwareContext
         return $serviceProviders->getServiceProvider(
             'https://pieter.aai.surfnet.nl/simplesamlphp/module.php/saml/sp/metadata.php/default-sp'
         );
-    }
-
-    /**
-     * @Then i wait :seconds seconds until i'm redirected to :url
-     *
-     * @param int $seconds
-     * @param string $url
-     */
-    public function iWaitUntilRedirectedToUrl($seconds, $url)
-    {
-        while ($seconds--) {
-            try {
-                $this->minkContext->assertPageAddress($url);
-
-                return;
-            } catch (\Exception $exception) {
-                // Try again.
-            }
-        }
-        $this->minkContext->assertPageAddress($url);
-    }
-
-    /**
-     * @Then i wait :seconds seconds for the redirect back the service provider
-     *
-     * @param int $seconds
-     */
-    public function iWaitUntilRedirectedToServiceProvider($seconds)
-    {
-        $this->iWaitUntilRedirectedToUrl($seconds, '/simplesamlphp/sp.php');
     }
 
     /**

@@ -130,7 +130,6 @@ Tests and metrics
 To run all required test you can run the following commands from the dev env:
 
 ```bash 
-    ./bin/bootstrap_phantomjs.sh
     composer test 
 ```
 
