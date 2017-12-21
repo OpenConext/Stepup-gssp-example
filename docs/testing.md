@@ -7,8 +7,6 @@ as well as on a continuous integration server, which also helps the developer to
 You can run all test combined with:
 
 ```bash
-./bin/bootstrap_phantomjs.sh
-
 composer test
 ``` 
 
@@ -62,8 +60,6 @@ Acceptance tests will be written for all command handlers and will be run as par
 You can run these tools manually with composer:
 
 ```bash
-./bin/bootstrap_phantomjs.sh
-
 composer behat
 ``` 
 
