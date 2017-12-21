@@ -1,7 +1,0 @@
-{
-    "ignoreSslErrors": true,
-    "load-images": true,
-    "localToRemoteUrlAccessEnabled": true,
-    "cookies-file": "/tmp/phantomjs-cookies",
-    "webdriver": 8646
-}

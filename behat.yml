@@ -7,12 +7,16 @@ default:
         Behat\MinkExtension:
             base_url: https://gssp.stepup.example.com
             default_session: 'symfony2'
+            goutte:
+               guzzle_parameters:
+                    curl.CURLOPT_SSL_VERIFYPEER: false
+                    curl.CURLOPT_CERTINFO: false
+                    ssl.certificate_authority: false
+                    verify: false
             sessions:
                 symfony2:
                     symfony2: ~
-            selenium2:
-              wd_host: "http://127.0.0.1:8646/wd/hub"
-              capabilities: { "browser": "firefox", "version": "14"}
+
         Behatch\Extension: ~
     suites:
         app_bundle:
@@ -23,4 +27,12 @@ default:
                 - Behat\MinkExtension\Context\MinkContext
                 - behatch:context:xml
             bundle: 'AppBundle'
+        sp_bundle:
+            type: symfony_bundle
+            contexts:
+                - AppBundle\Features\Context\WebContext
+                - AppBundle\Features\Context\ErrorReportContext
+                - Behat\MinkExtension\Context\MinkContext
+                - behatch:context:xml
+            bundle: 'SpBundle'
 
