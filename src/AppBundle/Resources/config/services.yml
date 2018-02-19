@@ -2,6 +2,8 @@ services:
     AppBundle\Twig\GsspExtension:
         tags: [twig.extension]
         arguments:
-            $hostedEntities: '@surfnet_saml.configuration.hosted_entities'
+            $hostedEntities: '@Surfnet\SamlBundle\Entity\HostedEntities'
 
 
+    Surfnet\SamlBundle\Entity\HostedEntities:
+      alias: surfnet_saml.configuration.hosted_entities
