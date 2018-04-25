@@ -99,7 +99,7 @@
             "./node_modules/.bin/encore"
         ],
 
-        "frond-end-install": [
+        "frontend-install": [
             "yarn install"
         ],
 
@@ -113,7 +113,7 @@
         ],
         "post-install-cmd": [
             "@symfony-scripts",
-            "@frond-end-install"
+            "@frontend-install"
         ],
         "post-update-cmd": [
             "@symfony-scripts"
