@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "05ba241d5cf92a51f336a45486abed38",
@@ -1262,16 +1262,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v3.1.2",
+            "version": "v3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "e9786e2e47971b9e3684391778d2c489e4725f26"
+                "reference": "a07885a55fe5d3335ef0913ee9e95a75b34bfc52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/e9786e2e47971b9e3684391778d2c489e4725f26",
-                "reference": "e9786e2e47971b9e3684391778d2c489e4725f26",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/a07885a55fe5d3335ef0913ee9e95a75b34bfc52",
+                "reference": "a07885a55fe5d3335ef0913ee9e95a75b34bfc52",
                 "shasum": ""
             },
             "require": {
@@ -1285,7 +1285,7 @@
             "require-dev": {
                 "mockery/mockery": "~0.9",
                 "phpmd/phpmd": "~1.5",
-                "phpunit/phpunit": "~3.7",
+                "phpunit/phpunit": "~4",
                 "sebastian/phpcpd": "~1.4",
                 "sensiolabs/security-checker": "~1.1",
                 "squizlabs/php_codesniffer": "~1.4"
@@ -1293,7 +1293,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "v3.0.x-dev"
+                    "dev-master": "v3.1.x-dev"
                 }
             },
             "autoload": {
@@ -1315,7 +1315,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2018-01-26T07:55:28+00:00"
+            "time": "2018-04-18T04:43:35+00:00"
         },
         {
             "name": "surfnet/stepup-gssp-bundle",
