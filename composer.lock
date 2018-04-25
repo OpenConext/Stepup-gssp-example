@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05ba241d5cf92a51f336a45486abed38",
+    "content-hash": "e443cb44f3016f31395d549f62926e48",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -1319,16 +1319,16 @@
         },
         {
             "name": "surfnet/stepup-gssp-bundle",
-            "version": "1.0.2",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenConext/Stepup-gssp-bundle.git",
-                "reference": "0692362604dae5ab96055806e71842d0b34244e8"
+                "reference": "cbd33b2ac7c7a2fce9307b2a8ab2c27668fb803e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenConext/Stepup-gssp-bundle/zipball/0692362604dae5ab96055806e71842d0b34244e8",
-                "reference": "0692362604dae5ab96055806e71842d0b34244e8",
+                "url": "https://api.github.com/repos/OpenConext/Stepup-gssp-bundle/zipball/cbd33b2ac7c7a2fce9307b2a8ab2c27668fb803e",
+                "reference": "cbd33b2ac7c7a2fce9307b2a8ab2c27668fb803e",
                 "shasum": ""
             },
             "require": {
@@ -1337,7 +1337,7 @@
                 "php": ">=5.5.9",
                 "sensio/distribution-bundle": "^5.0.19",
                 "sensio/framework-extra-bundle": "^3.0.2",
-                "surfnet/stepup-saml-bundle": "^3.0",
+                "surfnet/stepup-saml-bundle": "^4.0",
                 "symfony-bundles/bundle-dependency": "^1.0",
                 "symfony/monolog-bundle": "^3.1.0",
                 "symfony/polyfill-apcu": "^1.0",
@@ -1355,7 +1355,6 @@
                 "phpunit/phpunit": "^5.7",
                 "sebastian/phpcpd": "^3.0",
                 "sensio/generator-bundle": "^3.0",
-                "sensiolabs/security-checker": "^4.1",
                 "squizlabs/php_codesniffer": "^3.1",
                 "symfony/phpunit-bridge": "^3.3",
                 "symfony/symfony": "^3.3"
@@ -1379,8 +1378,7 @@
                     "@lint",
                     "@static-analysis",
                     "@phpunit",
-                    "@behat",
-                    "@security-tests"
+                    "@behat"
                 ],
                 "lint": [
                     "@lint-php",
@@ -1422,9 +1420,6 @@
                 "behat": [
                     "vendor/bin/behat  --config behat.yml"
                 ],
-                "security-tests": [
-                    "vendor/bin/security-checker security:check --end-point=http://security.sensiolabs.org/check_lock"
-                ],
                 "coverage": [
                     "@phpunit-coverage",
                     "mkdir -p coverage/reports",
@@ -1439,23 +1434,23 @@
             ],
             "description": "Generic SAML Stepup Provider bundle.",
             "support": {
-                "source": "https://github.com/OpenConext/Stepup-gssp-bundle/tree/1.0.2",
+                "source": "https://github.com/OpenConext/Stepup-gssp-bundle/tree/1.2.0",
                 "issues": "https://github.com/OpenConext/Stepup-gssp-bundle/issues"
             },
-            "time": "2018-02-15T15:25:39+00:00"
+            "time": "2018-04-25T11:39:49+00:00"
         },
         {
             "name": "surfnet/stepup-saml-bundle",
-            "version": "3.0.0",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenConext/Stepup-saml-bundle.git",
-                "reference": "67e24599a6402fdf602304851bfff915c0c4609c"
+                "reference": "a86371b72de4825c8393227ba1d3b81569eb9540"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenConext/Stepup-saml-bundle/zipball/67e24599a6402fdf602304851bfff915c0c4609c",
-                "reference": "67e24599a6402fdf602304851bfff915c0c4609c",
+                "url": "https://api.github.com/repos/OpenConext/Stepup-saml-bundle/zipball/a86371b72de4825c8393227ba1d3b81569eb9540",
+                "reference": "a86371b72de4825c8393227ba1d3b81569eb9540",
                 "shasum": ""
             },
             "require": {
@@ -1490,7 +1485,7 @@
                 "stepup",
                 "surfnet"
             ],
-            "time": "2018-01-17T12:59:03+00:00"
+            "time": "2018-04-16T12:33:16+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
