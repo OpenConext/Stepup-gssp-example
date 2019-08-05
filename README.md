@@ -82,33 +82,27 @@ Install from a clean or exiting symfony project
 Development environment
 ======================
 
-To get started, first setup the development environment. The dev env is a virtual machine. Every task described here is required to run
+The purpose of the development environment is only for running the different test and metric tools.
+
+To get started, first setup the development environment. The dev. env. is a virtual machine. Every task described is run
 from that machine.  
 
 Requirements
 -------------------
-- ansible 2.x
-- vagrant 1.9.x
-- vagrant-hostsupdater
+- vagrant 2.2.x
+    - vagrant-hostsupdater (1.1.1.160, global)
+    - vagrant-vbguest (0.19.0, global)
 - Virtualbox
-- ansible-galaxy
 
 Install
-=======
-
-``` ansible-galaxy install -r ansible/requirements.yml -p ansible/roles/ ```
+-------------------
+``` cd homestead && composer install ```
 
 ``` vagrant up ```
 
-Go to the directory inside the VM:
+If everything goes as planned you can develop inside the virtual machine
 
 ``` vagrant ssh ```
-
-``` cd /vagrant ```
-
-Install composer dependencies:
-
-``` composer install ```
 
 Build frontend assets:
 
@@ -116,13 +110,12 @@ Build frontend assets:
 
 If everything goes as planned you can go to:
 
-[https://gssp.stepup.example.com](https://gssp.stepup.example.com)
+[https://gssp.stepup.example.com](https://gssp.stepup.example.com/app_dev.php)
 
 Debugging
----------
-
+-------------------
 Xdebug is configured when provisioning your development Vagrant box. 
-It's configured with auto connect IDE_KEY=phpstorm.
+It's configured with auto connect IDE_KEY=phpstorm and ```xon``` on cli env. 
 
 Tests and metrics
 ======================
@@ -135,7 +128,9 @@ To run all required test you can run the following commands from the dev env:
 
 Every part can be run separately. Check "scripts" section of the composer.json file for the different options.
 
-# Release strategy
+Release instructions
+=====================
+
 Please read: https://github.com/OpenConext/Stepup-Deploy/wiki/Release-Management for more information on the release strategy used in Stepup projects.
 
 Other resources

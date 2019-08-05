@@ -28,9 +28,8 @@
 
 # Vagrant files #
 #################
-vagrant.retry
 .vagrant
-ansible/roles
+homestead/vendor
 
 # Code coverage reports #
 #################
