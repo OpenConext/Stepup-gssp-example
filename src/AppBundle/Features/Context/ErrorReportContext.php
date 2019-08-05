@@ -60,19 +60,13 @@ final class ErrorReportContext implements Context
      */
     public function dumpInfoAfterFailedStep(AfterStepScope $scope)
     {
-        if ($this->stepIsSuccessful($scope)) {
+        if (!$this->stepIsSuccessful($scope)) {
             return;
         }
         try {
             $scenario = $this->getScenario($scope);
-            if (null !== $scenario) {
-                $title = $scenario->getTitle();
-            } else {
-                $step = $this->getBackGroundStep($scope);
-                $title = $step->getNodeType().'-'.$step->getText();
-            }
+            $title = null !== $scenario ? $scenario->getTitle() : $this->getBackGroundStep($scope)->getNodeType() . '-' . $this->getBackGroundStep($scope)->getText();
             $filename = preg_replace('/[^a-zA-Z0-9]/', '-', $title);
-
             $this->saveErrorFile($scope, $filename);
             $this->takeScreenShotAfterFailedStep($filename);
         } catch (DriverException $exception) {
@@ -182,6 +176,6 @@ TEXT;
 
     private function getOutputPath()
     {
-        return __DIR__ .'/../../../../build';
+        return __DIR__ . '/../../../../build';
     }
 }

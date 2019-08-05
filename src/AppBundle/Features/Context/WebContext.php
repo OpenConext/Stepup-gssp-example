@@ -30,6 +30,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
 
+/**
+ * Class WebContext
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class WebContext implements Context, KernelAwareContext
 {
     /**
