@@ -14,7 +14,7 @@ folders:
 sites:
     -
         map: gssp.stepup.example.com
-        to: /home/vagrant/code/web
-        type: symfony2
+        to: /home/vagrant/code/public
+        type: symfony4
 name: gsspexample
 hostname: gsspexample

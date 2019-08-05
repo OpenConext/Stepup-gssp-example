@@ -3,7 +3,10 @@ default:
         progress:
             paths: false
     extensions:
-        Behat\Symfony2Extension: ~
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
         Behat\MinkExtension:
             base_url: https://gssp.stepup.example.com
             default_session: 'symfony2'
@@ -16,23 +19,11 @@ default:
             sessions:
                 symfony2:
                     symfony2: ~
-
         Behatch\Extension: ~
     suites:
-        app_bundle:
-            type: symfony_bundle
+        default:
             contexts:
-                - AppBundle\Features\Context\WebContext
-                - AppBundle\Features\Context\ErrorReportContext
+                - Test\Features\Context\WebContext
+                - Test\Features\Context\ErrorReportContext
                 - Behat\MinkExtension\Context\MinkContext
                 - behatch:context:xml
-            bundle: 'AppBundle'
-        sp_bundle:
-            type: symfony_bundle
-            contexts:
-                - AppBundle\Features\Context\WebContext
-                - AppBundle\Features\Context\ErrorReportContext
-                - Behat\MinkExtension\Context\MinkContext
-                - behatch:context:xml
-            bundle: 'SpBundle'
-

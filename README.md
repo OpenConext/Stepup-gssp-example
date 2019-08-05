@@ -106,7 +106,8 @@ If everything goes as planned you can develop inside the virtual machine
 
 Build frontend assets:
 
-``` composer encore dev ``` or ``` composer encore prod ``` for production 
+``` yarn install ```
+``` yarn encore dev ``` or ``` yarn encore prod ``` for production 
 
 If everything goes as planned you can go to:
 
