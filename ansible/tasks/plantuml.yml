@@ -8,19 +8,19 @@
     state: present
 
 - stat:
-    path: /usr/bin/plantum1
-  register: st-plantum1
+    path: /usr/bin/plantuml
+  register: stplantuml
 
 - name: Download plantuml.jar
   get_url:
-    url: https://sourceforge.net/projects/plantuml/files/plantuml.jar
+    url:  http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
     dest: /usr/share/plantuml.jar
     mode: u=rw,g=rw,o=rw
-  when: st-plantum1.stat.islnk is not defined
+  when: stplantuml.stat.islnk is not defined
 
 - name: Create binary link
   template:
-    src: 'plantum1.sh.j2'
-    dest: '/usr/bin/plantum1'
+    src: 'plantuml.sh.j2'
+    dest: '/usr/bin/plantuml'
     mode: 'u=xrw,g=xrw,o=rwx'
-  when: st-plantum1.stat.islnk is not defined
+  when: stplantuml.stat.islnk is not defined
