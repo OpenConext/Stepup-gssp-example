@@ -12,6 +12,7 @@
   - vim
   - composer
   - git
+  - gcc-c++ # needed for yarn/gyp
 
 - name: Install nginx, php-(cli,fpm)
   yum: name={{item}} state=present
