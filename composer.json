@@ -38,7 +38,7 @@
         "surfnet/stepup-gssp-bundle": "^1.0",
         "symfony/monolog-bundle": "^3.1.0",
         "symfony/polyfill-apcu": "^1.0",
-        "symfony/symfony": "3.3.*",
+        "symfony/symfony": "3.4.*",
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
