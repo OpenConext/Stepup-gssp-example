@@ -136,7 +136,7 @@ To run all required test you can run the following commands from the dev env:
 Every part can be run separately. Check "scripts" section of the composer.json file for the different options.
 
 # Release strategy
-Please read: https://github.com/OpenConext/Stepup-Deploy/wiki/Release-Management fro more information on the release strategy used in Stepup projects.
+Please read: https://github.com/OpenConext/Stepup-Deploy/wiki/Release-Management for more information on the release strategy used in Stepup projects.
 
 Other resources
 ======================
