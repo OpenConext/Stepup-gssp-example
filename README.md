@@ -109,6 +109,13 @@ Build frontend assets:
 ``` yarn install ```
 ``` yarn encore dev ``` or ``` yarn encore prod ``` for production 
 
+Create a .env file
+
+1. `$ cd ~/code`
+1. `cp .env.ci .env`
+1. Edit the `.env` file with the editor of your choice and update the `APP_SECRET` to a value of your liking. See [Symfony docs](https://symfony.com/doc/current/reference/configuration/framework.html#secret) for more details about this secret. 
+
+
 If everything goes as planned you can go to:
 
 [https://gssp.stepup.example.com](https://gssp.stepup.example.com/app_dev.php)
