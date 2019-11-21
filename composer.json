@@ -13,7 +13,7 @@
   "autoload-dev": {
     "psr-4": {
       "Dev\\": "dev",
-      "Test\\Features\\": "Features"
+      "Test\\Features\\": "tests\\Features"
     }
   },
   "require": {
