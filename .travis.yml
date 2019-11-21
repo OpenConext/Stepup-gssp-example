@@ -45,7 +45,7 @@ before_script:
 
   # Install dependencies
   - cp .env.ci .env
-  - cp config/packages/parameters.yml.dist config/packages/parameters.yml
+  - cp config/packages/parameters.yaml.dist config/packages/parameters.yaml
   - composer install
   - yarn install
   - yarn encore dev

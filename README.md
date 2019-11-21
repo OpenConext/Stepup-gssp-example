@@ -96,25 +96,29 @@ Requirements
 
 Install
 -------------------
-``` cd homestead && composer install ```
+```$ cd homestead && composer install ```
 
 ``` vagrant up ```
 
-If everything goes as planned you can develop inside the virtual machine
+If everything goes as intended, you can develop in the virtual machine.
 
 ``` vagrant ssh ```
 
-Build frontend assets:
+**Build frontend assets:**
 
 ``` yarn install ```
 ``` yarn encore dev ``` or ``` yarn encore prod ``` for production 
 
-Create a .env file
+**Create a .env file**
 
 1. `$ cd ~/code`
-1. `cp .env.ci .env`
+1. `$ cp .env.ci .env`
 1. Edit the `.env` file with the editor of your choice and update the `APP_SECRET` to a value of your liking. See [Symfony docs](https://symfony.com/doc/current/reference/configuration/framework.html#secret) for more details about this secret. 
 
+
+**Copy the parameters.yaml**
+
+`$ cp config/packages/parameters.yaml.dist config/packages/parameters.yaml`
 
 If everything goes as planned you can go to:
 
