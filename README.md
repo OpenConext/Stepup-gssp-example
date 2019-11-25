@@ -82,47 +82,52 @@ Install from a clean or exiting symfony project
 Development environment
 ======================
 
-To get started, first setup the development environment. The dev env is a virtual machine. Every task described here is required to run
+The purpose of the development environment is only for running the different test and metric tools.
+
+To get started, first setup the development environment. The dev. env. is a virtual machine. Every task described is run
 from that machine.  
 
 Requirements
 -------------------
-- ansible 2.x
-- vagrant 1.9.x
-- vagrant-hostsupdater
+- vagrant 2.2.x
+    - vagrant-hostsupdater (1.1.1.160, global)
+    - vagrant-vbguest (0.19.0, global)
 - Virtualbox
-- ansible-galaxy
 
 Install
-=======
-
-``` ansible-galaxy install -r ansible/requirements.yml -p ansible/roles/ ```
+-------------------
+```$ cd homestead && composer install ```
 
 ``` vagrant up ```
 
-Go to the directory inside the VM:
+If everything goes as intended, you can develop in the virtual machine.
 
 ``` vagrant ssh ```
 
-``` cd /vagrant ```
+**Build frontend assets:**
 
-Install composer dependencies:
+``` yarn install ```
+``` yarn encore dev ``` or ``` yarn encore prod ``` for production 
 
-``` composer install ```
+**Create a .env file**
 
-Build frontend assets:
+1. `$ cd ~/code`
+1. `$ cp .env.ci .env`
+1. Edit the `.env` file with the editor of your choice and update the `APP_SECRET` to a value of your liking. See [Symfony docs](https://symfony.com/doc/current/reference/configuration/framework.html#secret) for more details about this secret. 
 
-``` composer encore dev ``` or ``` composer encore prod ``` for production 
+
+**Copy the parameters.yaml**
+
+`$ cp config/packages/parameters.yaml.dist config/packages/parameters.yaml`
 
 If everything goes as planned you can go to:
 
-[https://gssp.stepup.example.com](https://gssp.stepup.example.com)
+[https://gssp.stepup.example.com](https://gssp.stepup.example.com/app_dev.php)
 
 Debugging
----------
-
+-------------------
 Xdebug is configured when provisioning your development Vagrant box. 
-It's configured with auto connect IDE_KEY=phpstorm.
+It's configured with auto connect IDE_KEY=phpstorm and ```xon``` on cli env. 
 
 Tests and metrics
 ======================
@@ -135,7 +140,9 @@ To run all required test you can run the following commands from the dev env:
 
 Every part can be run separately. Check "scripts" section of the composer.json file for the different options.
 
-# Release strategy
+Release instructions
+=====================
+
 Please read: https://github.com/OpenConext/Stepup-Deploy/wiki/Release-Management for more information on the release strategy used in Stepup projects.
 
 Other resources
