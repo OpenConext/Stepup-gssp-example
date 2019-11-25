@@ -8,6 +8,10 @@
 # to apply, you may also create user-customizations.sh,
 # which will be run after this script.
 
+sudo apt update
+sudo apt upgrade -y
+sudo apt install plantuml -y
+
 cd /home/vagrant/code
 
 sudo cp /home/vagrant/code/homestead/php.ini /etc/php/7.2/mods-available/custom.ini
