@@ -16,7 +16,7 @@ cd /home/vagrant/code
 
 sudo cp /home/vagrant/code/homestead/php.ini /etc/php/7.2/mods-available/custom.ini
 sudo phpenmod -v 7.2 custom
-composer install
+COMPOSER_MEMORY_LIMIT=-1 composer install
 xon
 echo 'cd /home/vagrant/code' >> ~/.profile
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
