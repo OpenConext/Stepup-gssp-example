@@ -1,3 +1,6 @@
+# 1.4.0
+Upgrade to Symfony 4
+
 # 1.3.0
 Better request ID logging
 

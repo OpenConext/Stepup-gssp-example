@@ -5,8 +5,8 @@ default:
     extensions:
         Behat\Symfony2Extension:
             kernel:
-                bootstrap: tests/Features/bootstrap/bootstrap.php
-                class: App\Kernel
+                bootstrap: tests/Functional/Features/bootstrap/bootstrap.php
+                class: Surfnet\Gssp\Infrastructure\Kernel
         Behat\MinkExtension:
             base_url: https://gssp.stepup.example.com
             default_session: 'symfony2'
@@ -23,9 +23,9 @@ default:
     suites:
         default:
             paths:
-                - tests/Features
+                - tests/Functional/Features
             contexts:
-                - Test\Features\Context\WebContext
-                - Test\Features\Context\ErrorReportContext
+                - Surfnet\Gssp\Test\Features\Context\WebContext
+                - Surfnet\Gssp\Test\Features\Context\ErrorReportContext
                 - Behat\MinkExtension\Context\MinkContext
                 - behatch:context:xml

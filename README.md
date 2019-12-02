@@ -93,25 +93,12 @@ Requirements
     - vagrant-hostsupdater (1.1.1.160, global)
     - vagrant-vbguest (0.19.0, global)
 - Virtualbox
+- Composer
 
 Install
 -------------------
-```$ cd homestead && composer install ```
-
-``` vagrant up ```
-
-If everything goes as intended, you can develop in the virtual machine.
-
-``` vagrant ssh ```
-
-**Build frontend assets:**
-
-``` yarn install ```
-``` yarn encore dev ``` or ``` yarn encore prod ``` for production 
-
 **Create a .env file**
 
-1. `$ cd ~/code`
 1. `$ cp .env.ci .env`
 1. Edit the `.env` file with the editor of your choice and update the `APP_SECRET` to a value of your liking. See [Symfony docs](https://symfony.com/doc/current/reference/configuration/framework.html#secret) for more details about this secret. 
 
@@ -120,6 +107,34 @@ If everything goes as intended, you can develop in the virtual machine.
 
 `$ cp config/packages/parameters.yaml.dist config/packages/parameters.yaml`
 
+**Bring up Homestead**
+
+```
+$ cd homestead
+$ composer install
+$ cd ..
+$ vagrant up
+```
+
+If everything goes as intended, you can develop in the virtual machine.
+
+**Upgrade Homestead regularly**
+
+Issues described in the previous section can be prevented if the base box is up to date.
+
+For detailed instructions, please visit the excellent Homestead [documentation pages](https://laravel.com/docs/5.8/homestead#updating-homestead).
+
+**Building frontend assets:**
+
+`$ yarn encore dev` 
+
+or 
+
+`$ yarn encore prod` 
+
+for production 
+
+
 If everything goes as planned you can go to:
 
 [https://gssp.stepup.example.com](https://gssp.stepup.example.com/app_dev.php)
@@ -127,7 +142,7 @@ If everything goes as planned you can go to:
 Debugging
 -------------------
 Xdebug is configured when provisioning your development Vagrant box. 
-It's configured with auto connect IDE_KEY=phpstorm and ```xon``` on cli env. 
+It's configured with auto connect IDE_KEY=phpstorm. 
 
 Tests and metrics
 ======================
