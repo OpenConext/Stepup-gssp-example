@@ -17,9 +17,10 @@ echo "\n########\n# Update PHP settings\n######\n"
 # Use our onw PHP.ini
 sudo cp /home/vagrant/code/homestead/php.ini /etc/php/7.2/mods-available/custom.ini
 
-# Use PHP 7.2 by default in our environment
+# Use PHP 7.2 by default in our environment and enable Xdebug
 sudo phpenmod -v 7.2 custom
-xon xdebug
+php72
+xon
 
 echo "\n########\n# Update environment settings\n######\n"
 # Aplly the following changes in the code directory
