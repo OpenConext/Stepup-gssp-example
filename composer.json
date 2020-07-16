@@ -7,13 +7,15 @@
   "prefer-stable": true,
   "autoload": {
     "psr-4": {
-      "App\\": "src"
+      "Surfnet\\": "src\\Surfnet"
     }
   },
   "autoload-dev": {
     "psr-4": {
       "Dev\\": "dev",
-      "Test\\Features\\": "tests\\Features"
+      "Surfnet\\Gssp\\Test\\Features\\": "tests\\Functional\\Features",
+      "Surfnet\\Gssp\\Test\\Unit\\": "tests\\Unit",
+      "Surfnet\\Gssp\\Test\\WebTest\\": "tests\\Functional\\WebTests"
     }
   },
   "require": {
@@ -87,9 +89,15 @@
       "vendor/bin/phpcpd  ./src",
       "vendor/bin/phpcpd  ./tests"
     ],
-    "phpunit": "vendor/bin/phpunit",
+    "phpunit": [
+      "vendor/bin/phpunit --testsuite=Unit",
+      "vendor/bin/phpunit --testsuite=WebTests"
+    ],
     "behat": "vendor/bin/behat  --config behat.yml --tags '~@remote'",
-    "security-tests": "vendor/bin/security-checker security:check",
+    "security-tests": [
+      "vendor/bin/security-checker security:check",
+      "yarn audit"
+    ],
     "coverage": [
       "@phpunit-coverage",
       "mkdir -p coverage/reports",

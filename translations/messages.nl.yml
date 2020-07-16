@@ -8,8 +8,6 @@ page.header.stepup-gssp-bundle: GSSP-bundel
 page.navigation.route.homepage: Home
 page.navigation.route.app_identity_registration: Registratie
 page.navigation.route.app_identity_authentication: Authenticatie
-page.navigation.route.gssp_saml_sso: SSO
-page.navigation.route.gssp_saml_sso_return: SSO return
 page.navigation.route.gssp_saml_metadata: Metadata
 page.navigation.route.sp_demo: Demo SP
 
