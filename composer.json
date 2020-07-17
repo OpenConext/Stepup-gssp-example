@@ -35,7 +35,8 @@
     "symfony/yaml": "^4.3",
     "symfony/form": "^4.3",
     "symfony/templating": "^4.3",
-    "symfony/webpack-encore-bundle": "^1.6"
+    "symfony/webpack-encore-bundle": "^1.6",
+    "incenteev/composer-parameter-handler": "^2.1"
   },
   "require-dev": {
     "behat/symfony2-extension": "^2.1",
@@ -112,9 +113,11 @@
       "assets:install %PUBLIC_DIR%": "symfony-cmd"
     },
     "post-install-cmd": [
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
       "@auto-scripts"
     ],
     "post-update-cmd": [
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
       "@auto-scripts"
     ]
   },
@@ -122,6 +125,11 @@
     "symfony": {
       "allow-contrib": false,
       "require": "4.4.*"
-    }
+    },
+    "incenteev-parameters": [
+      {
+        "file": "config/packages/parameters.yaml"
+      }
+    ]
   }
 }
