@@ -27,6 +27,7 @@
 /node_modules/
 /web/build
 .env
+local-php-security-checker
 
 # Vagrant files #
 #################
