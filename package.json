@@ -11,5 +11,8 @@
   },
   "resolutions": {
     "js-yaml": "^3.13.1"
+  },
+  "dependencies": {
+    "js-yaml": "^3.13.1"
   }
 }
