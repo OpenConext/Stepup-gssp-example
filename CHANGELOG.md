@@ -1,3 +1,6 @@
+# 1.4.1
+Security updates for JS and PHP dependencies
+
 # 1.4.0
 Upgrade to Symfony 4
 
