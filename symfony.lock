@@ -42,6 +42,9 @@
     "behatch/contexts": {
         "version": "3.2.0"
     },
+    "composer/xdebug-handler": {
+        "version": "2.0.1"
+    },
     "container-interop/container-interop": {
         "version": "1.2.0"
     },
@@ -69,6 +72,9 @@
     "fabpot/goutte": {
         "version": "v3.2.3"
     },
+    "friends-of-behat/mink-extension": {
+        "version": "v2.5.0"
+    },
     "guzzlehttp/guzzle": {
         "version": "6.3.3"
     },
@@ -80,6 +86,9 @@
     },
     "hamcrest/hamcrest-php": {
         "version": "v2.0.0"
+    },
+    "incenteev/composer-parameter-handler": {
+        "version": "v2.1.4"
     },
     "jakub-onderka/php-parallel-lint": {
         "version": "v1.0.0"
@@ -307,6 +316,9 @@
     "symfony/dependency-injection": {
         "version": "v4.3.3"
     },
+    "symfony/deprecation-contracts": {
+        "version": "v2.4.0"
+    },
     "symfony/dom-crawler": {
         "version": "v4.3.3"
     },
@@ -437,6 +449,9 @@
     "symfony/polyfill-intl-idn": {
         "version": "v1.11.0"
     },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.23.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
     },
@@ -445,6 +460,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.11.0"
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.23.0"
     },
     "symfony/profiler-pack": {
         "version": "v1.0.4"
