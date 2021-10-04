@@ -20,7 +20,7 @@ cache:
 before_script:
   # configure ssl
   - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-  - nvm install 12
+  - nvm install 14
   - curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
   - sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/certs/gssp.key -out /etc/ssl/certs/gssp.crt -subj "/C=NL/ST=Netherlands/L=Amsterdam/O=TEST/CN=gssp.stepup.example.com"
 
