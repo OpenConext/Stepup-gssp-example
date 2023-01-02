@@ -26,6 +26,7 @@ use SAML2\AuthnRequest;
 use SAML2\Certificate\PrivateKeyLoader;
 use SAML2\Configuration\PrivateKey;
 use SAML2\Constants;
+use SAML2\XML\saml\Issuer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -139,10 +140,11 @@ class WebContext implements Context, KernelAwareContext
      */
     public function aNormalSAMLAuthnRequestFormAUnknownServiceProvider()
     {
+        $issuer = new Issuer('https://service_provider_unkown/saml/metadata');
         $authnRequest = new AuthnRequest();
         $authnRequest->setAssertionConsumerServiceURL('https://service_provider_unkown/saml/acs');
         $authnRequest->setDestination($this->getIdentityProvider()->getSsoUrl());
-        $authnRequest->setIssuer('https://service_provider_unkown/saml/metadata');
+        $authnRequest->setIssuer($issuer);
         $authnRequest->setProtocolBinding(Constants::BINDING_HTTP_REDIRECT);
 
         // Sign with random key, does not mather for now.
