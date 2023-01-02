@@ -140,7 +140,9 @@ class WebContext implements Context, KernelAwareContext
      */
     public function aNormalSAMLAuthnRequestFormAUnknownServiceProvider()
     {
-        $issuer = new Issuer('https://service_provider_unkown/saml/metadata');
+        $issuer = new Issuer();
+        $issuer->setValue('https://service_provider_unkown/saml/metadata');
+
         $authnRequest = new AuthnRequest();
         $authnRequest->setAssertionConsumerServiceURL('https://service_provider_unkown/saml/acs');
         $authnRequest->setDestination($this->getIdentityProvider()->getSsoUrl());
