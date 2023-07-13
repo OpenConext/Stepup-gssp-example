@@ -119,6 +119,24 @@
       "@auto-scripts"
     ]
   },
+  "archive": {
+    "exclude": [
+      "*",
+      ".*",
+      "!/.env",
+      "*/Tests/*",
+      "!/bin",
+      "!/component_info",
+      "!/config",
+      "!/migrations",
+      "!/public",
+      "!/src",
+      "!/templates",
+      "!/translations",
+      "!/var/cache/prod",
+      "!/vendor"
+    ]
+  },
   "extra": {
     "symfony": {
       "allow-contrib": false,
