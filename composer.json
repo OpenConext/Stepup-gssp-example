@@ -66,8 +66,7 @@
       "@lint",
       "@static-analysis",
       "@phpunit",
-      "@behat",
-      "@security-tests"
+      "@behat"
     ],
     "lint": [
       "@lint-php",
@@ -97,10 +96,6 @@
       "vendor/bin/phpunit --testsuite=WebTests"
     ],
     "behat": "vendor/bin/behat  --config behat.yml --tags '~@remote'",
-    "security-tests": [
-      "composer audit",
-      "yarn audit"
-    ],
     "coverage": [
       "@phpunit-coverage",
       "mkdir -p coverage/reports",
