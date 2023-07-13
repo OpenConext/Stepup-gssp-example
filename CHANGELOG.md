@@ -1,3 +1,9 @@
+# 1.4.3
+Make the project compatible with Stepup-build
+- Added a composer archive section 
+- Moved the SF .env depencency to the non-dev depencencies
+- Moved security tests away from Travis to the Github Actions nighlty security checks 
+
 # 1.4.1
 Security updates for JS and PHP dependencies
 
