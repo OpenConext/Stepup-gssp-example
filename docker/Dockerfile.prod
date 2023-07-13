@@ -1,5 +1,5 @@
 FROM ghcr.io/openconext/openconext-basecontainers/php72-apache2:latest AS php-build
-COPY Stepup-gssp-example-1.4.3-20230713124515Z-824bb1b17b0e8d2a86622c7c791109d55b8d9dae.tar.bz2 /tmp/
+COPY *.tar.bz2 /tmp/
 RUN tar -xvjf /tmp/*.tar.bz2 -C /var/www/html/ && \
   rm -rf /tmp/*.tar.bz2
 
@@ -9,7 +9,7 @@ COPY config/packages/parameters.yaml.dist config/packages/parameters.yaml
 # Add the config files for Apache2
 RUN rm -rf /etc/apache2/sites-enabled/*
 COPY ./docker/conf/apache2.conf /etc/apache2/sites-enabled/apache2.conf
-#RUN rm -rf /var/www/html/var/cache/prod && chown -R www-data /var/www/html/var
+RUN rm -rf /var/www/html/var/cache/prod && chown -R www-data /var/www/html/var
 
 # Set the default workdir
 WORKDIR /var/www/html
