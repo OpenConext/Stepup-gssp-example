@@ -22,25 +22,25 @@
     "ext-dom": "*",
     "ext-libxml": "*",
     "ext-zlib": "*",
-    "symfony/flex": "^1.4",
+    "incenteev/composer-parameter-handler": "^2.1",
     "sensio/framework-extra-bundle": "^5.4",
+    "surfnet/stepup-gssp-bundle": "^4.0",
+    "surfnet/stepup-saml-bundle": "^5.0",
     "symfony/asset": "^4.3",
-    "symfony/twig-bundle": "^4.3",
+    "symfony/dotenv": "4.4.*",
+    "symfony/flex": "^1.4",
+    "symfony/form": "^4.3",
     "symfony/monolog-bundle": "^3.4",
     "symfony/security-bundle": "^4.3",
-    "symfony/translation": "^4.3",
-    "symfony/validator": "^4.3",
-    "surfnet/stepup-saml-bundle": "^5.0",
-    "surfnet/stepup-gssp-bundle": "^4.0",
-    "symfony/yaml": "^4.3",
-    "symfony/form": "^4.3",
     "symfony/templating": "^4.3",
+    "symfony/translation": "^4.3",
+    "symfony/twig-bundle": "^4.3",
+    "symfony/validator": "^4.3",
     "symfony/webpack-encore-bundle": "^1.6",
-    "incenteev/composer-parameter-handler": "^2.1"
+    "symfony/yaml": "^4.3"
   },
   "require-dev": {
     "behat/symfony2-extension": "^2.1",
-    "symfony/dotenv": "~4",
     "symfony/maker-bundle": "~1",
     "jakub-onderka/php-parallel-lint": "~1",
     "malukenho/docheader": "^0",
@@ -136,6 +136,7 @@
     ]
   },
   "config": {
+    "sort-packages": true,
     "allow-plugins": {
       "symfony/flex": true
     }
