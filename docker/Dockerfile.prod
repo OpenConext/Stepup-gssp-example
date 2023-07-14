@@ -5,6 +5,7 @@ RUN tar -xvjf /tmp/*.tar.bz2 -C /var/www/html/ && \
 
 # Add the application configuration files
 COPY config/packages/parameters.yaml.dist config/packages/parameters.yaml
+COPY .env.docker .env
 
 # Add the config files for Apache2
 RUN rm -rf /etc/apache2/sites-enabled/*
