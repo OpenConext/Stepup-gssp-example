@@ -6,7 +6,7 @@ parameters:
     saml_idp_privatekey: '/config/demogssp/demo_gssp_idp.key'
     saml_metadata_publickey: '/config/demogssp/demo_gssp_idp.crt'
     saml_metadata_privatekey: '/config/demogssp/demo_gssp_idp.key'
-    saml_remote_sp_entity_id: 'https://gateway.dev.openconext.local/authentication/metadata'
+    saml_remote_sp_entity_id: 'https://gateway.dev.openconext.local/gssp/demo_gssp/metadata'
     saml_remote_sp_certificate: '/config/gateway/gateway_gssp_sp.crt'
-    saml_remote_sp_acs: 'https://gateway.dev.openconext.local/authentication/consume-assertion'
+    saml_remote_sp_acs: 'https://gateway.dev.openconext.local/gssp/demo_gssp/consume-assertion'
 
