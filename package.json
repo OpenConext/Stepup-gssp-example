@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "js-yaml": "^3.13.1",
-    "postcss": ">=8.2.13",
+    "postcss": ">=8.4.31",
     "select2": "~4"
   },
   "resolutions": {
