@@ -1,0 +1,24 @@
+name: Run QA tests (static analysis, lint and unit tests)
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DOCKER_BUILD: docker build -t test-integration -f docker/Dockerfile.ci .
+      DOCKER_EXEC: docker run -v "/home/runner/work/Stepup-gssp-example/Stepup-gssp-example:/var/www/html" -w /var/www/html -t test-integration /bin/bash
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Start the docker image for testing
+        run: ${DOCKER_BUILD}
+
+      - name: Install Composer dependencies
+        run: ${DOCKER_EXEC} -c 'composer install'
+        env:
+          SYMFONY_ENV: dev
+
+      - name: Run QA tests
+        run: ${DOCKER_EXEC} -c 'composer check'
