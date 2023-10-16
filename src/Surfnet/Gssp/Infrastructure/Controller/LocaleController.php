@@ -20,6 +20,7 @@ declare(strict_types = 1);
 
 namespace Surfnet\Gssp\Infrastructure\Controller;
 
+use RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,8 +32,11 @@ final class LocaleController extends AbstractController
     #[Route(path: '/local/{lang}', name: 'local')]
     public function locale(Request $request, string $lang): Response|RedirectResponse
     {
-        // Make sure we redirect back to the this host.
+        // Make sure we redirect back to the host.
         $referer = $request->headers->get('referer');
+        if (!$referer) {
+            $referer = '';
+        }
         if ($request->getHost() !== parse_url($referer, PHP_URL_HOST)) {
             return new Response(sprintf('Cannot be requested from %s', $referer), Response::HTTP_BAD_REQUEST);
         }
