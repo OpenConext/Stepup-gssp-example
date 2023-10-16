@@ -67,7 +67,7 @@ class DefaultController extends AbstractController
 
         return $this->render('default/registration.html.twig', [
             'requiresRegistration' => $requiresRegistration,
-            'NameID' => uniqid('test-prefix-', 'test-entropy'),
+            'NameID' => uniqid('test-prefix-', true),
         ], $response);
     }
 
