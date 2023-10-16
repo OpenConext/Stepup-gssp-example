@@ -2,3 +2,8 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+
+    Surfnet\Gssp\Test\Features\Context\WebContext:
+        public: true
+        arguments:
+            - "@kernel"

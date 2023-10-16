@@ -24,6 +24,8 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\AfterStepScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Behat\Hook\Scope\StepScope;
+use Behat\Gherkin\Node\NodeInterface;
+use Behat\Gherkin\Node\ScenarioInterface;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\DriverException;
 use Behat\MinkExtension\Context\MinkContext;
@@ -34,34 +36,21 @@ use Behat\Testwork\Tester\Result\TestResult;
  */
 final class ErrorReportContext implements Context
 {
+    private MinkContext $minkContext;
 
     /**
-     * @var MinkContext
-     */
-    private $minkContext;
-
-    /**
-     * Fetch the required contexts.
-     *
-     * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope
-     *
      * @BeforeScenario
      */
-    public function gatherContexts(BeforeScenarioScope $scope)
+    public function gatherContexts(BeforeScenarioScope $scope): void
     {
-
         $environment = $scope->getEnvironment();
         $this->minkContext = $environment->getContext(MinkContext::class);
     }
 
     /**
-     * This will print the failed html result.
-     *
-     * @param \Behat\Behat\Hook\Scope\AfterStepScope $scope
-     *
      * @AfterStep
      */
-    public function dumpInfoAfterFailedStep(AfterStepScope $scope)
+    public function dumpInfoAfterFailedStep(AfterStepScope $scope): void
     {
         if ($this->stepIsSuccessful($scope)) {
             return;
@@ -84,13 +73,11 @@ final class ErrorReportContext implements Context
     }
 
     /**
-     * Saves screen shot.
-     *
-     * @param string $fileName
+     * Saves screenshot.
      *
      * @throws \Behat\Mink\Exception\DriverException
      */
-    private function takeScreenShotAfterFailedStep($fileName)
+    private function takeScreenShotAfterFailedStep(string $fileName): void
     {
         $session = $this->minkContext->getSession();
         if (!($session->getDriver() instanceof Selenium2Driver)) {
@@ -107,11 +94,8 @@ final class ErrorReportContext implements Context
 
     /**
      * Save the page result file to disk.
-     *
-     * @param \Behat\Behat\Hook\Scope\AfterStepScope $scope
-     * @param string $fileName
      */
-    private function saveErrorFile(AfterStepScope $scope, $fileName)
+    private function saveErrorFile(AfterStepScope $scope, string $fileName): void
     {
         $session = $this->minkContext->getSession();
         $content = <<< TEXT
@@ -127,26 +111,16 @@ TEXT;
 
     /**
      * Check if test is successful.
-     *
-     * @param \Behat\Behat\Hook\Scope\AfterStepScope $scope
-     *   The test scope.
-     *
-     * @return bool
-     *   TRUE if it is successfully.
      */
-    private function stepIsSuccessful(AfterStepScope $scope)
+    private function stepIsSuccessful(AfterStepScope $scope): bool
     {
         return $scope->getTestResult()->getResultCode() !== TestResult::FAILED;
     }
 
     /**
      * Returns the scenaro for a given step.
-     *
-     * @param \Behat\Behat\Hook\Scope\StepScope $scope
-     *
-     * @return \Behat\Gherkin\Node\ScenarioInterface
      */
-    private function getScenario(StepScope $scope)
+    private function getScenario(StepScope $scope): ScenarioInterface
     {
         $scenario = null;
         $feature = $scope->getFeature();
@@ -164,12 +138,8 @@ TEXT;
 
     /**
      * Returns the scenario for a given step.
-     *
-     * @param \Behat\Behat\Hook\Scope\StepScope $scope
-     *
-     * @return \Behat\Gherkin\Node\NodeInterface|null
      */
-    private function getBackGroundStep(StepScope $scope)
+    private function getBackGroundStep(StepScope $scope): ?NodeInterface
     {
         $feature = $scope->getFeature();
         $step = $scope->getStep();
@@ -183,7 +153,7 @@ TEXT;
         return null;
     }
 
-    private function getOutputPath()
+    private function getOutputPath(): string
     {
         return __DIR__ . '/../../build';
     }
