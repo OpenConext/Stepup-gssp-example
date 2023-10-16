@@ -26,6 +26,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function is_string;
 
 class DefaultController extends AbstractController
 {
@@ -53,12 +54,20 @@ class DefaultController extends AbstractController
     public function registration(Request $request): Response
     {
         if ($request->get('action') === 'error') {
-            $this->registrationService->reject($request->get('message'));
+            $message = $request->get('message');
+            if (!is_string($message)) {
+                $message = '';
+            }
+            $this->registrationService->reject($message);
             return $this->registrationService->replyToServiceProvider();
         }
 
         if ($request->get('action') === 'register') {
-            $this->registrationService->register($request->get('NameID'));
+            $nameId = $request->get('NameID');
+            if (!is_string($nameId)) {
+                $nameId = '';
+            }
+            $this->registrationService->register($nameId);
             return $this->registrationService->replyToServiceProvider();
         }
 
@@ -82,7 +91,11 @@ class DefaultController extends AbstractController
         $nameId = $this->authenticationService->getNameId();
 
         if ($request->get('action') === 'error') {
-            $this->authenticationService->reject($request->get('message'));
+            $message = $request->get('message');
+            if (!is_string($message)) {
+                $message = '';
+            }
+            $this->authenticationService->reject($message);
             return $this->authenticationService->replyToServiceProvider();
         }
 

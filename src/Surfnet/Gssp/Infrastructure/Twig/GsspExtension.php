@@ -20,6 +20,7 @@ declare(strict_types = 1);
 
 namespace Surfnet\Gssp\Infrastructure\Twig;
 
+use RuntimeException;
 use Surfnet\SamlBundle\Entity\HostedEntities;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -37,6 +38,19 @@ final class GsspExtension extends AbstractExtension
 
     public function generateDemoSPUrl(): string
     {
+        if (!$this->hostedEntities->getIdentityProvider()) {
+            throw new RuntimeException(
+                'Unable to retrieve the Demo SP URL, it is not configured correctly in hosted idp section.'
+            );
+        }
+
+        if (!$this->hostedEntities->getIdentityProvider()->getEntityId()) {
+            throw new RuntimeException(
+                'The entity id is not set on the Hosted idp (Demo SP)'
+            );
+        }
+
+
         return sprintf(
             'https://pieter.aai.surfnet.nl/simplesamlphp/sp.php?idp=%s',
             urlencode($this->hostedEntities->getIdentityProvider()->getEntityId())
