@@ -64,6 +64,8 @@
       "@composer-validate",
       "@docheader",
       "@lint",
+      "@phpcs",
+      "@phpmd",
       "@static-analysis",
       "@phpunit",
       "@behat"
@@ -73,15 +75,12 @@
     "lint": "./ci/qa/lint",
     "phpcs": "./ci/qa/phpcs",
     "phpcbf": "./ci/qa/phpcbf",
+    "phpmd": "./ci/qa/phpmd",
 
     "static-analysis": [
-      "@phpmd",
       "@phpcpd"
     ],
     "license-headers": "vendor/bin/docheader check src/ dev/ tests/",
-    "phpmd": "vendor/bin/phpmd ./src text phpmd.xml  --suffixes php",
-
-
     "phpcpd": [
       "vendor/bin/phpcpd  ./src",
       "vendor/bin/phpcpd  ./tests"
