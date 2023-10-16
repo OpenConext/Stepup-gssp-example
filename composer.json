@@ -43,9 +43,9 @@
     "behat/mink-browserkit-driver": "^2.1",
     "behat/mink-goutte-driver": "^2.0",
     "friends-of-behat/symfony-extension": "^2.4",
-    "jakub-onderka/php-parallel-lint": "^1.0",
     "malukenho/docheader": "^1",
     "mockery/mockery": "^1.6",
+    "overtrue/phplint": "*",
     "phpmd/phpmd": "^2.14",
     "phpunit/phpcov": "^9.0",
     "phpunit/phpunit": "^10.4",
@@ -60,20 +60,13 @@
     "symfony/web-profiler-bundle": "^6.3"
   },
   "scripts": {
-    "test": [
+    "check": [
       "@lint",
       "@static-analysis",
       "@phpunit",
       "@behat"
     ],
-    "lint": [
-      "@lint-php",
-      "@lint-yml",
-      "@lint-composer"
-    ],
-    "lint-php": "vendor/bin/parallel-lint dev src",
-    "lint-yml": "bin/console lint:yaml config",
-    "lint-composer": "composer validate",
+    "lint": "./ci/qa/lint",
     "static-analysis": [
       "@license-headers",
       "@phpmd",
