@@ -68,7 +68,7 @@
       "@phpcpd",
       "@phpcs",
       "@phpmd",
-      "@phpstan",
+      "@phpstan"
     ],
     "behat": "./ci/qa/behat",
     "composer-validate": "./ci/qa/validate",

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types = 1);
+
 /**
  * Copyright 2019 SURFnet B.V.
  *
@@ -62,7 +65,7 @@ final readonly class LocaleResponseListener implements EventSubscriberInterface
     {
         $request = $this->requestStack->getMainRequest();
         $response = $event->getResponse();
-        $cookie = \Symfony\Component\HttpFoundation\Cookie::create(self::STEPUP_LOCALE_COOKIE, $request->getLocale(), 0, '/', $this->getNakedDomain());
+        $cookie = Cookie::create(self::STEPUP_LOCALE_COOKIE, $request->getLocale(), 0, '/', $this->getNakedDomain());
         $response->headers->setCookie($cookie);
     }
 
