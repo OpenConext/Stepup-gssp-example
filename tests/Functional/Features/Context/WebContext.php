@@ -22,43 +22,30 @@ namespace Surfnet\Gssp\Test\Features\Context;
 
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\MinkExtension\Context\MinkContext;
-use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Behat\Behat\Context\Context;
+use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\AuthnRequest;
 use SAML2\Certificate\PrivateKeyLoader;
 use SAML2\Configuration\PrivateKey;
 use SAML2\Constants;
 use SAML2\XML\saml\Issuer;
+use Surfnet\SamlBundle\Entity\IdentityProvider;
+use Surfnet\SamlBundle\Entity\ServiceProvider;
+use Surfnet\SamlBundle\Exception\NotFound;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
 
-class WebContext implements Context, KernelAwareContext
+class WebContext implements Context
 {
-    /**
-     * @var MinkContext
-     */
-    protected $minkContext;
+    protected MinkContext $minkContext;
 
-    /**
-     * @var KernelInterface
-     */
-    protected $kernel;
+    protected KernelInterface $kernel;
 
-    /**
-     * @var string
-     */
-    protected $previousMinkSession;
+    protected string $previousMinkSession;
 
-    /**
-     * Sets HttpKernel instance.
-     * This method will be automatically called by Symfony2Extension
-     * ContextInitializer.
-     *
-     * @param KernelInterface $kernel
-     */
-    public function setKernel(KernelInterface $kernel)
+    public function __construct(KernelInterface $kernel)
     {
         $this->kernel = $kernel;
     }
@@ -68,7 +55,7 @@ class WebContext implements Context, KernelAwareContext
      *
      * @BeforeScenario
      */
-    public function gatherContexts(BeforeScenarioScope $scope)
+    public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $environment = $scope->getEnvironment();
         $this->minkContext = $environment->getContext(MinkContext::class);
@@ -79,7 +66,7 @@ class WebContext implements Context, KernelAwareContext
      *
      * @BeforeScenario @remote
      */
-    public function setGoutteDriver()
+    public function setGoutteDriver(): void
     {
         $this->previousMinkSession = $this->minkContext->getMink()->getDefaultSessionName();
         $this->minkContext->getMink()->setDefaultSessionName('goutte');
@@ -90,7 +77,7 @@ class WebContext implements Context, KernelAwareContext
      *
      * @AfterScenario @remote
      */
-    public function resetGoutteDriver()
+    public function resetGoutteDriver(): void
     {
         $this->minkContext->getMink()->setDefaultSessionName($this->previousMinkSession);
     }
@@ -100,19 +87,16 @@ class WebContext implements Context, KernelAwareContext
      *
      * @When the service provider send the AuthnRequest with HTTP-Redirect binding
      *
-     * @throws \Surfnet\SamlBundle\Exception\NotFound
+     * @throws NotFound
      */
-    public function callIdentityProviderSSOActionWithAuthnRequest()
+    public function callIdentityProviderSSOActionWithAuthnRequest(): void
     {
         $this->minkContext->visit('https://pieter.aai.surfnet.nl/simplesamlphp/sp.php?sp=default-sp');
         $this->minkContext->selectOption('idp', 'https://gssp.stepup.example.com/saml/metadata');
         $this->minkContext->pressButton('Login');
     }
 
-    /**
-     * @return \Surfnet\SamlBundle\Entity\IdentityProvider
-     */
-    public function getIdentityProvider()
+    public function getIdentityProvider(): IdentityProvider
     {
         /** @var RequestStack $stack */
         $stack = $this->kernel->getContainer()->get('request_stack');
@@ -124,11 +108,9 @@ class WebContext implements Context, KernelAwareContext
     }
 
     /**
-     * @return \Surfnet\SamlBundle\Entity\ServiceProvider
-     *
-     * @throws \Surfnet\SamlBundle\Exception\NotFound
+     * @throws NotFound
      */
-    public function getServiceProvider()
+    public function getServiceProvider(): ServiceProvider
     {
         $serviceProviders = $this->kernel->getContainer()->get('surfnet_saml.remote.service_providers');
         return $serviceProviders->getServiceProvider(
@@ -139,9 +121,9 @@ class WebContext implements Context, KernelAwareContext
     /**
      * @Given /^a normal SAML 2.0 AuthnRequest form a unknown service provider$/
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    public function aNormalSAMLAuthnRequestFormAUnknownServiceProvider()
+    public function aNormalSAMLAuthnRequestFormAUnknownServiceProvider(): void
     {
         $issuer = new Issuer();
         $issuer->setValue('https://service_provider_unkown/saml/metadata');
@@ -163,11 +145,9 @@ class WebContext implements Context, KernelAwareContext
     }
 
     /**
-     * @param PrivateKey $key
-     * @return XMLSecurityKey
-     * @throws \Exception
+     * @throws Exception
      */
-    private static function loadPrivateKey(PrivateKey $key)
+    private static function loadPrivateKey(PrivateKey $key): XMLSecurityKey
     {
         $keyLoader = new PrivateKeyLoader();
         $privateKey = $keyLoader->loadPrivateKey($key);

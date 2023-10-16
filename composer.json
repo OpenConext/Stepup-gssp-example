@@ -42,6 +42,7 @@
     "behat/mink": "^1.9",
     "behat/mink-browserkit-driver": "^2.1",
     "behat/mink-goutte-driver": "^2.0",
+    "behat/mink-selenium2-driver": "^1.6",
     "friends-of-behat/symfony-extension": "^2.4",
     "malukenho/docheader": "^1",
     "mockery/mockery": "^1.6",
@@ -70,6 +71,7 @@
       "@phpstan",
       "@behat"
     ],
+    "behat": "./ci/qa/behat",
     "composer-validate": "./ci/qa/validate",
     "docheader": "./ci/qa/docheader",
     "lint": "./ci/qa/lint",
@@ -79,7 +81,6 @@
     "phpmd": "./ci/qa/phpmd",
     "phpstan": "./ci/qa/phpstan",
     "phpstan-baseline": "./ci/qa/phpstan-update-baseline",
-    "behat": "vendor/bin/behat  --config behat.yml --tags '~@remote'",
     "frontend-install": [
       "yarn install",
       "yarn encore prod"
