@@ -62,12 +62,14 @@
   "scripts": {
     "check": [
       "@composer-validate",
+      "@docheader",
       "@lint",
       "@static-analysis",
       "@phpunit",
       "@behat"
     ],
     "composer-validate": "./ci/qa/validate",
+    "docheader": "./ci/qa/docheader",
     "lint": "./ci/qa/lint",
     "static-analysis": [
       "@license-headers",
