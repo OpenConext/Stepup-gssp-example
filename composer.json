@@ -47,9 +47,10 @@
     "mockery/mockery": "^1.6",
     "overtrue/phplint": "*",
     "phpmd/phpmd": "^2.14",
-    "phpunit/phpcov": "^9.0",
-    "phpunit/phpunit": "^10.4",
+    "phpunit/phpcov": "^8.2",
+    "phpunit/phpunit": "^9.6",
     "rector/rector": "*",
+    "sebastian/phpcpd": "^6.0",
     "slevomat/coding-standard": "^8.13",
     "soyuka/contexts": "^3.3",
     "squizlabs/php_codesniffer": "~3",
@@ -64,6 +65,7 @@
       "@composer-validate",
       "@docheader",
       "@lint",
+      "@phpcpd",
       "@phpcs",
       "@phpmd",
       "@static-analysis",
@@ -74,17 +76,10 @@
     "docheader": "./ci/qa/docheader",
     "lint": "./ci/qa/lint",
     "phpcs": "./ci/qa/phpcs",
+    "phpcpd": "./ci/qa/phpcpd",
     "phpcbf": "./ci/qa/phpcbf",
     "phpmd": "./ci/qa/phpmd",
 
-    "static-analysis": [
-      "@phpcpd"
-    ],
-    "license-headers": "vendor/bin/docheader check src/ dev/ tests/",
-    "phpcpd": [
-      "vendor/bin/phpcpd  ./src",
-      "vendor/bin/phpcpd  ./tests"
-    ],
     "phpunit": [
       "vendor/bin/phpunit --testsuite=Unit",
       "vendor/bin/phpunit --testsuite=WebTests"
