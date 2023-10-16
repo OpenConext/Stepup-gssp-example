@@ -28,22 +28,15 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * Handles the lang selection based on cookie.
  */
-final class LocaleResponseListener implements EventSubscriberInterface
+final readonly class LocaleResponseListener implements EventSubscriberInterface
 {
-    const STEPUP_LOCALE_COOKIE = 'stepup_locale';
+    public const STEPUP_LOCALE_COOKIE = 'stepup_locale';
 
-    private $translator;
-    private $requestStack;
-
-    public function __construct(
-        TranslatorInterface $translator,
-        RequestStack $requestStack
-    ) {
-        $this->translator = $translator;
-        $this->requestStack = $requestStack;
+    public function __construct(private TranslatorInterface $translator, private RequestStack $requestStack)
+    {
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::RESPONSE => ['onKernelResponse'],
@@ -53,10 +46,8 @@ final class LocaleResponseListener implements EventSubscriberInterface
 
     /**
      * Sets the application local based on stepup cookie.
-     *
-     * @param RequestEvent $event
      */
-    public function onKernelRequest(RequestEvent $event)
+    public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
         $local = $request->cookies->get(self::STEPUP_LOCALE_COOKIE, $request->getLocale());
@@ -66,20 +57,12 @@ final class LocaleResponseListener implements EventSubscriberInterface
 
     /**
      * Preserves the current selected local as user cookie.
-     *
-     * @param ResponseEvent $event
      */
-    public function onKernelResponse(ResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event): void
     {
-        $request = $this->requestStack->getMasterRequest();
+        $request = $this->requestStack->getMainRequest();
         $response = $event->getResponse();
-        $cookie = new Cookie(
-            self::STEPUP_LOCALE_COOKIE,
-            $request->getLocale(),
-            0,
-            '/',
-            $this->getNakedDomain()
-        );
+        $cookie = \Symfony\Component\HttpFoundation\Cookie::create(self::STEPUP_LOCALE_COOKIE, $request->getLocale(), 0, '/', $this->getNakedDomain());
         $response->headers->setCookie($cookie);
     }
 
@@ -88,11 +71,11 @@ final class LocaleResponseListener implements EventSubscriberInterface
      *
      * @return string
      */
-    private function getNakedDomain()
+    private function getNakedDomain(): string
     {
-        $masterRequest = $this->requestStack->getMasterRequest();
+        $masterRequest = $this->requestStack->getMainRequest();
         $host = $masterRequest->getHost();
-        $parts = explode('.', $host);
+        $parts = explode('.', (string) $host);
         return implode('.', array_slice($parts, -2, 2));
     }
 }
