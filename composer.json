@@ -61,11 +61,13 @@
   },
   "scripts": {
     "check": [
+      "@composer-validate",
       "@lint",
       "@static-analysis",
       "@phpunit",
       "@behat"
     ],
+    "composer-validate": "./ci/qa/validate",
     "lint": "./ci/qa/lint",
     "static-analysis": [
       "@license-headers",
