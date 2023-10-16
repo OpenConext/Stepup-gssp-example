@@ -27,23 +27,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    private $authenticationService;
-    private $registrationService;
-
     public function __construct(
-        AuthenticationService $authenticationService,
-        RegistrationService $registrationService
+        private readonly AuthenticationService $authenticationService,
+        private readonly RegistrationService $registrationService
     ) {
-        $this->authenticationService = $authenticationService;
-        $this->registrationService = $registrationService;
     }
 
     /**
      * Replace this example code with whatever you need/
-     *
-     * @Route("/", name="homepage")
      */
-    public function indexAction()
+    #[Route(path: '/', name: 'homepage')]
+    public function index(): Response
     {
         return $this->render('default/index.html.twig');
     }
@@ -52,10 +46,9 @@ class DefaultController extends AbstractController
      * Replace this example code with whatever you need.
      *
      * See @see RegistrationService for a more clean example.
-     *
-     * @Route("/registration", name="app_identity_registration")
      */
-    public function registrationAction(Request $request)
+    #[Route(path: '/registration', name: 'app_identity_registration')]
+    public function registration(Request $request): Response
     {
         if ($request->get('action') === 'error') {
             $this->registrationService->reject($request->get('message'));
@@ -80,10 +73,9 @@ class DefaultController extends AbstractController
      * Replace this example code with whatever you need.
      *
      * See @see AuthenticationService for a more clean example.
-     *
-     * @Route("/authentication", name="app_identity_authentication")
      */
-    public function authenticationAction(Request $request)
+    #[Route(path: '/authentication', name: 'app_identity_authentication')]
+    public function authentication(Request $request): Response
     {
         $nameId = $this->authenticationService->getNameId();
 

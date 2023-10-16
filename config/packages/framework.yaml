@@ -13,7 +13,3 @@ framework:
         cookie_samesite: lax
     assets: ~
     php_errors:
-        log: true
-    templating:
-        engines:
-            - twig
