@@ -71,17 +71,17 @@
     "composer-validate": "./ci/qa/validate",
     "docheader": "./ci/qa/docheader",
     "lint": "./ci/qa/lint",
+    "phpcs": "./ci/qa/phpcs",
+    "phpcbf": "./ci/qa/phpcbf",
+
     "static-analysis": [
-      "@license-headers",
       "@phpmd",
-      "@phpcs",
       "@phpcpd"
     ],
     "license-headers": "vendor/bin/docheader check src/ dev/ tests/",
     "phpmd": "vendor/bin/phpmd ./src text phpmd.xml  --suffixes php",
-    "phpcs": [
-      "vendor/bin/phpcs --standard=phpcs.xml --report=full --warning-severity=0 ./src"
-    ],
+
+
     "phpcpd": [
       "vendor/bin/phpcpd  ./src",
       "vendor/bin/phpcpd  ./tests"
