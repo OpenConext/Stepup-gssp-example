@@ -27,7 +27,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\Translation\Translator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Handles the lang selection based on cookie.
@@ -36,7 +36,7 @@ final readonly class LocaleResponseListener implements EventSubscriberInterface
 {
     public const STEPUP_LOCALE_COOKIE = 'stepup_locale';
 
-    public function __construct(private Translator $translator, private RequestStack $requestStack)
+    public function __construct(private TranslatorInterface $translator, private RequestStack $requestStack)
     {
     }
 
