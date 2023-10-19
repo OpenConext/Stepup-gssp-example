@@ -65,7 +65,7 @@ final readonly class LocaleResponseListener implements EventSubscriberInterface
     public function onKernelResponse(ResponseEvent $event): void
     {
         $request = $this->requestStack->getMainRequest();
-        if (!$request) {
+        if (!$request instanceof \Symfony\Component\HttpFoundation\Request) {
             throw new RuntimeException('There was no request in the request stack');
         }
         $response = $event->getResponse();
@@ -81,7 +81,7 @@ final readonly class LocaleResponseListener implements EventSubscriberInterface
     private function getNakedDomain(): string
     {
         $mainRequest = $this->requestStack->getMainRequest();
-        if (!$mainRequest) {
+        if (!$mainRequest instanceof \Symfony\Component\HttpFoundation\Request) {
             throw new RuntimeException('There was no main request in the request stack');
         }
         $host = $mainRequest->getHost();
