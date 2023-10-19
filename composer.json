@@ -24,7 +24,7 @@
     "ext-libxml": "*",
     "ext-zlib": "*",
     "incenteev/composer-parameter-handler": "^2.1",
-    "surfnet/stepup-gssp-bundle": "^5.0",
+    "surfnet/stepup-gssp-bundle": "dev-feature/stop-using-session",
     "symfony/asset": "^6.3",
     "symfony/console": "^6.3",
     "symfony/dotenv": "^6.3",
@@ -50,7 +50,6 @@
     "phpmd/phpmd": "^2.14",
     "phpstan/phpstan": "^1.10",
     "phpstan/phpstan-symfony": "^1.3",
-    "rector/rector": "*",
     "sebastian/phpcpd": "^6.0",
     "slevomat/coding-standard": "^8.13",
     "soyuka/contexts": "^3.3",
@@ -115,6 +114,12 @@
       "!/vendor"
     ]
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/OpenConext/Stepup-gssp-bundle"
+    }
+  ],
   "extra": {
     "symfony": {
       "allow-contrib": false,

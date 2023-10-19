@@ -38,7 +38,7 @@ final class GsspExtension extends AbstractExtension
 
     public function generateDemoSPUrl(): string
     {
-        if (!$this->hostedEntities->getIdentityProvider()) {
+        if (!$this->hostedEntities->getIdentityProvider() instanceof \Surfnet\SamlBundle\Entity\IdentityProvider) {
             throw new RuntimeException(
                 'Unable to retrieve the Demo SP URL, it is not configured correctly in hosted idp section.'
             );
