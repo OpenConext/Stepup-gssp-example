@@ -24,7 +24,7 @@
     "ext-libxml": "*",
     "ext-zlib": "*",
     "incenteev/composer-parameter-handler": "^2.1",
-    "surfnet/stepup-gssp-bundle": "dev-feature/stop-using-session",
+    "surfnet/stepup-gssp-bundle": "^5.0",
     "symfony/asset": "^6.3",
     "symfony/console": "^6.3",
     "symfony/dotenv": "^6.3",
@@ -114,12 +114,6 @@
       "!/vendor"
     ]
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/OpenConext/Stepup-gssp-bundle"
-    }
-  ],
   "extra": {
     "symfony": {
       "allow-contrib": false,
