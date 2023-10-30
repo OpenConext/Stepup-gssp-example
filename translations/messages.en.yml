@@ -67,7 +67,7 @@ page.route.description.gssp_saml_sso_return: |
 
 page.route.description.sp_demo: |
   Demo service provider to test the second factor IdP application with.
-  This is not part of the second factor IdP and can only be used in development (app_dev.php) mode.
+  This is not part of the second factor IdP and can only be used in development mode (APP_ENV=dev).
 
 en: EN
 nl_NL: NL

@@ -63,7 +63,7 @@ page.route.description.gssp_saml_sso_return: |
     - Toont een submit button als JavaScript is uitgeschakeld
 page.route.description.sp_demo: |
     Demo url voor het ontvangen van de SAML AuthnRequest response van de IdP.
-    Dit maakt geen deel uit van de sterke authenticatie IdP en kan alleen worden gebruikt in ontwikkelingsmodus.
+    Dit maakt geen deel uit van de sterke authenticatie IdP en kan alleen worden gebruikt in dev mode (APP_ENV=dev).
 
 saml.subject_name_id: Subject NameID
 
