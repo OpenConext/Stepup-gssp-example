@@ -15,9 +15,6 @@ services:
         resource: '../src/Surfnet/Gssp/Infrastructure/Controller/*'
         tags: ['controller.service_arguments']
 
-    Surfnet\SamlBundle\EventSubscriber\BridgeContainerBootListener:
-        tags: ['kernel.event_listener']
-
 when@dev:
     services:
         _defaults:
