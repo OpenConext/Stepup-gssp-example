@@ -155,6 +155,6 @@ TEXT;
 
     private function getOutputPath(): string
     {
-        return __DIR__ . '/../../build';
+        return __DIR__ . '/../../../../var/behat';
     }
 }
