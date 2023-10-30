@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Call to an undefined method Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:setLocale\\(\\)\\.$#"
+			count: 1
+			path: ../../src/Surfnet/Gssp/Infrastructure/EventSubscriber/LocaleResponseListener.php
+
+		-
 			message: "#^Generator expects value type Symfony\\\\Component\\\\HttpKernel\\\\Bundle\\\\BundleInterface, object given\\.$#"
 			count: 1
 			path: ../../src/Surfnet/Gssp/Infrastructure/Kernel.php
