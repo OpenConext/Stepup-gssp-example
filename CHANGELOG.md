@@ -1,3 +1,10 @@
+# 2.0.0
+Make the project Symfony 6 and PHP 8.2 compatible.
+Many changes were made to achieve this goal. Some highlights:
+- The Homestead dev-env is removed you can now use OpenConext-devconf instead
+- Acceptance tests now run on GitHub Actions (Travis is no longer used)
+- Styling was brushed up
+
 # 1.4.3
 Make the project compatible with Stepup-build
 - Added a composer archive section 
