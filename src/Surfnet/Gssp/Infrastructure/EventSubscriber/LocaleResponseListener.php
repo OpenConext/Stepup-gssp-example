@@ -23,6 +23,7 @@ namespace Surfnet\Gssp\Infrastructure\EventSubscriber;
 use RuntimeException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
@@ -65,7 +66,7 @@ final readonly class LocaleResponseListener implements EventSubscriberInterface
     public function onKernelResponse(ResponseEvent $event): void
     {
         $request = $this->requestStack->getMainRequest();
-        if (!$request instanceof \Symfony\Component\HttpFoundation\Request) {
+        if (!$request instanceof Request) {
             throw new RuntimeException('There was no request in the request stack');
         }
         $response = $event->getResponse();
@@ -81,7 +82,7 @@ final readonly class LocaleResponseListener implements EventSubscriberInterface
     private function getNakedDomain(): string
     {
         $mainRequest = $this->requestStack->getMainRequest();
-        if (!$mainRequest instanceof \Symfony\Component\HttpFoundation\Request) {
+        if (!$mainRequest instanceof Request) {
             throw new RuntimeException('There was no main request in the request stack');
         }
         $host = $mainRequest->getHost();
