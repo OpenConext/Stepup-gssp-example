@@ -32,7 +32,12 @@ when@dev:
             tags: [ 'controller.service_arguments' ]
 
 when@test:
-    Surfnet\Gssp\Test\Features\Context\WebContext:
-        public: true
-        arguments:
-            - "@kernel"
+    services:
+        _defaults:
+            autowire: true
+            autoconfigure: true
+
+        Surfnet\Gssp\Test\Features\Context\WebContext:
+            public: true
+            arguments:
+                - "@kernel"
