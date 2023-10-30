@@ -1,5 +1,6 @@
 twig:
     paths:
         '%kernel.project_dir%/templates': 'GsspExample'
+        '%kernel.project_dir%/vendor/surfnet/stepup-saml-bundle/templates': 'SurfnetSaml'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
