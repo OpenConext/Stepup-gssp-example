@@ -25,6 +25,9 @@ jobs:
 
       - name: Composer install
         run: composer install
+
+      - name: Webpack Encore
+        run: yarn encore production
       
       - name: Run QA tests
         run: composer behat
