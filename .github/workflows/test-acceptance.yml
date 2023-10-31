@@ -26,6 +26,9 @@ jobs:
       - name: Composer install
         run: composer install
 
+      - name: Yarn install
+        run: yarn install
+
       - name: Webpack Encore
         run: yarn encore production
       
