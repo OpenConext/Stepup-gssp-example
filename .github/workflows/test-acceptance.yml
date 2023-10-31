@@ -9,6 +9,9 @@ jobs:
         working-directory: /var/www/html/
     container:
       image:  ghcr.io/openconext/openconext-basecontainers/php82-apache2-node20-composer2:latest
+      env:
+        APP_ENV: test
+        APP_DEBUG: false
       volumes:
         - .:/var/www/html
       options: -h gssp.stepup.example.com 

@@ -7,6 +7,8 @@ default:
             bootstrap: tests/Functional/Features/bootstrap/bootstrap.php
             kernel:
                 class: Surfnet\Gssp\Infrastructure\Kernel
+                environment: test
+                debug: false
         Behat\MinkExtension:
             base_url: https://gssp.stepup.example.com/
             goutte:
