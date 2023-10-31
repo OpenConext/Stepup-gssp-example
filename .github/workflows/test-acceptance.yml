@@ -11,10 +11,17 @@ jobs:
       image:  ghcr.io/openconext/openconext-basecontainers/php82-apache2-node16-composer2:latest
       volumes:
         - .:/var/www/html
+      options: -h gssp.stepup.example.com 
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Copy some config
+        run: cp docker/conf/apache2_ssl.conf /etc/apache2/sites-enabled/ && rm /etc/apache2/sites-enabled/000-default.conf
+
+      - name: Do a graceful restart of apache2
+        run: a2enmod ssl && apachectl -k graceful
 
       - name: Composer install
         run: composer install
