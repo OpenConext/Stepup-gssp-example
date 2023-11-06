@@ -10,7 +10,7 @@ default:
                 environment: test
                 debug: false
         Behat\MinkExtension:
-            base_url: https://gssp.stepup.example.com/
+            base_url: https://demogssp.dev.openconext.local/
             goutte:
                 server_parameters:
                     verify_host: false

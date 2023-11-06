@@ -18,13 +18,13 @@ Locale user preference
 ----------------------
 
 The default locale is based on the user agent. When the user switches its locale the selected preference is stored inside a
-browser cookie (stepup_locale). The cookie is set on naked domain of the requested domain (for gssp.stepup.example.com this is example.com).
+browser cookie (stepup_locale). The cookie is set on naked domain of the requested domain (for demogssp.dev.openconext.local this is example.com).
 
 Authentication and registration flows
 -------------------------------------
 
 The application provides internal (SpBundle) and a remote service provider. Instructions for this are given 
-on the homepage of this example project [Homepage](https://gssp.stepup.example.com/app_dev.php/).
+on the homepage of this example project [Homepage](https://demogssp.dev.openconext.local/app_dev.php/).
 
 ![flow](docs/flow.png)
 <!---
@@ -68,7 +68,7 @@ One of the benefits of using this repository is that it contains many pre-config
 2) Change the project configuration variables:
     * composer.json name and description
     * this readme.md file
-    * Replace 'gssp.stepup.example.com' in all files with your own hostename
+    * Replace 'demogssp.dev.openconext.local' in all files with your own hostename
 3) Install the copied project. (See [Development environment](#) section of this README.md file)
 4) Implement your authentication & registration logic in DefaultController::registrationAction and DefaultController::authenticateAction. 
 5) Feel free to rename and change this example clone for your needs.
@@ -137,7 +137,7 @@ for production
 
 If everything goes as planned you can go to:
 
-[https://gssp.stepup.example.com](https://gssp.stepup.example.com/app_dev.php)
+[https://demogssp.dev.openconext.local](https://demogssp.dev.openconext.local/app_dev.php)
 
 Debugging
 -------------------

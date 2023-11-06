@@ -14,7 +14,7 @@ jobs:
         APP_DEBUG: false
       volumes:
         - .:/var/www/html
-      options: -h gssp.stepup.example.com 
+      options: -h demogssp.dev.openconext.local
 
     steps:
       - name: Checkout
