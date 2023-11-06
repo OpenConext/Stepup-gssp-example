@@ -6,7 +6,7 @@ Feature: When an user needs to register for a new token
   @remote
   Scenario: When an user needs to register for a new token
     Given I am on "https://pieter.aai.surfnet.nl/simplesamlphp/sp.php?sp=default-sp"
-    And I select "https://demogssp.dev.openconext.local/saml/metadata" from "idp"
+    And I select "Openconext Stepup DEV Container (dev.openconext.local)" from "idp"
     When I press "Login"
     Then I should see "Registration"
     And I should be on "https://demogssp.dev.openconext.local/registration"
