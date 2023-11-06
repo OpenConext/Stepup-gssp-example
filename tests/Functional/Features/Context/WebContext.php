@@ -92,7 +92,7 @@ class WebContext implements Context
     public function callIdentityProviderSSOActionWithAuthnRequest(): void
     {
         $this->minkContext->visit('https://pieter.aai.surfnet.nl/simplesamlphp/sp.php?sp=default-sp');
-        $this->minkContext->selectOption('idp', 'https://gssp.stepup.example.com/saml/metadata');
+        $this->minkContext->selectOption('idp', 'https://demogssp.dev.openconext.local/saml/metadata');
         $this->minkContext->pressButton('Login');
     }
 
@@ -100,7 +100,7 @@ class WebContext implements Context
     {
         /** @var RequestStack $stack */
         $stack = $this->kernel->getContainer()->get('request_stack');
-        $stack->push(Request::create('https://gssp.stepup.example.com'));
+        $stack->push(Request::create('https://demogssp.dev.openconext.local'));
         $ip = $this->kernel->getContainer()->get('surfnet_saml.hosted.identity_provider');
         $stack->pop();
 
