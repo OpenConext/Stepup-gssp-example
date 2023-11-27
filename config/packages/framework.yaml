@@ -1,15 +1,50 @@
+imports:
+    - { resource: ../openconext/*.yaml }
+
 framework:
+    assets:
+        json_manifest_path: '%kernel.project_dir%/public/build/manifest.json'
     secret: '%env(APP_SECRET)%'
     csrf_protection: true
     http_method_override: true
     esi: false
     fragments: false
-
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
     session:
         handler_id: null
         cookie_secure: auto
         cookie_samesite: lax
-    assets: ~
     php_errors:
+    router:
+        strict_requirements: null
+        utf8: true
+    default_locale: en
+    translator:
+        default_path: '%kernel.project_dir%/translations'
+        fallbacks:
+            - en
+    validation:
+        email_validation_mode: html5
+
+when@dev:
+    framework:
+        router:
+            strict_requirements: true
+        profiler: { only_exceptions: false }
+
+when@test:
+    framework:
+        test: ~
+        session:
+            storage_factory_id: session.storage.factory.mock_file
+        profiler:
+            collect: false
+        http_client:
+            default_options:
+                verify_host: false
+                verify_peer: false
+        router:
+            strict_requirements: true
+        validation:
+            not_compromised_password: false
