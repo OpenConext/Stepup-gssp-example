@@ -11,10 +11,6 @@ default:
                 debug: false
         Behat\MinkExtension:
             base_url: https://demogssp.dev.openconext.local/
-            goutte:
-                server_parameters:
-                    verify_host: false
-                    verify_peer: false
             sessions:
                 symfony:
                     symfony: ~

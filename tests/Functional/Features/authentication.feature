@@ -1,8 +1,8 @@
+@skip
 Feature: When an user needs to authenticate
   As a service provider
   I need to send an AuthnRequest with a nameID to the identity provider
 
-  @remote
   Scenario: When an user needs to register for a new token
     Given I am on "https://pieter.aai.surfnet.nl/simplesamlphp/sp.php?sp=default-sp"
     And I select "Openconext Stepup DEV Container (dev.openconext.local)" from "idp"

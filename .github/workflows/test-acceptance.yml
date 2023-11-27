@@ -14,7 +14,7 @@ jobs:
         APP_DEBUG: false
       volumes:
         - .:/var/www/html
-      options: -h demogssp.dev.openconext.local
+      options: -h demogssp.test.openconext.local
 
     steps:
       - name: Checkout

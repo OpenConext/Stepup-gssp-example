@@ -17,9 +17,6 @@
     "behat/mink-extension": {
         "version": "2.3.1"
     },
-    "behat/mink-goutte-driver": {
-        "version": "v1.2.1"
-    },
     "behat/symfony2-extension": {
         "version": "2.1",
         "recipe": {
@@ -68,9 +65,6 @@
     },
     "doctrine/lexer": {
         "version": "1.1.0"
-    },
-    "fabpot/goutte": {
-        "version": "v3.2.3"
     },
     "friends-of-behat/mink-extension": {
         "version": "v2.5.0"
@@ -323,12 +317,6 @@
             "src/Kernel.php"
         ]
     },
-    "symfony/http-client": {
-        "version": "v4.3.3"
-    },
-    "symfony/http-client-contracts": {
-        "version": "v1.1.5"
-    },
     "symfony/http-foundation": {
         "version": "v4.3.3"
     },
@@ -349,9 +337,6 @@
             "version": "1.0",
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
-    },
-    "symfony/mime": {
-        "version": "v4.3.3"
     },
     "symfony/monolog-bridge": {
         "version": "v4.3.3"
@@ -379,16 +364,10 @@
     "symfony/polyfill-intl-icu": {
         "version": "v1.11.0"
     },
-    "symfony/polyfill-intl-idn": {
-        "version": "v1.11.0"
-    },
     "symfony/polyfill-intl-normalizer": {
         "version": "v1.23.0"
     },
     "symfony/polyfill-mbstring": {
-        "version": "v1.11.0"
-    },
-    "symfony/polyfill-php72": {
         "version": "v1.11.0"
     },
     "symfony/polyfill-php73": {

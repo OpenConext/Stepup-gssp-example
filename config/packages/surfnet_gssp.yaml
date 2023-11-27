@@ -1,4 +1,3 @@
 surfnet_gssp:
   registration_route: app_identity_registration
   authentication_route: app_identity_authentication
-
