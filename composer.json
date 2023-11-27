@@ -121,7 +121,7 @@
     },
     "incenteev-parameters": [
       {
-        "file": "config/packages/parameters.yaml"
+        "file": "config/openconext/parameters.yaml"
       }
     ]
   },
