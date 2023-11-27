@@ -62,27 +62,6 @@ class WebContext implements Context
     }
 
     /**
-     * Set mink driver to goutte
-     *
-     * @BeforeScenario @remote
-     */
-    public function setGoutteDriver(): void
-    {
-        $this->previousMinkSession = $this->minkContext->getMink()->getDefaultSessionName();
-        $this->minkContext->getMink()->setDefaultSessionName('goutte');
-    }
-
-    /**
-     * Set mink driver to goutte
-     *
-     * @AfterScenario @remote
-     */
-    public function resetGoutteDriver(): void
-    {
-        $this->minkContext->getMink()->setDefaultSessionName($this->previousMinkSession);
-    }
-
-    /**
      * Create AuthnRequest from demo IdP.
      *
      * @When the service provider send the AuthnRequest with HTTP-Redirect binding

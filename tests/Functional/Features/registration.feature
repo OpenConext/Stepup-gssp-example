@@ -1,9 +1,9 @@
+@skip
 Feature: When an user needs to register for a new token
   To register an user for a new token
   As a service provider
   I need to send an AuthnRequest to the identity provider
 
-  @remote
   Scenario: When an user needs to register for a new token
     Given I am on "https://pieter.aai.surfnet.nl/simplesamlphp/sp.php?sp=default-sp"
     And I select "Openconext Stepup DEV Container (dev.openconext.local)" from "idp"
