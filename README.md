@@ -24,7 +24,7 @@ Authentication and registration flows
 -------------------------------------
 
 The application provides internal (SpBundle) and a remote service provider. Instructions for this are given 
-on the homepage of this example project [Homepage](https://demogssp.dev.openconext.local/app_dev.php/).
+on the homepage of this example project [Homepage](https://demogssp.dev.openconext.local/).
 
 ![flow](docs/flow.png)
 <!---
@@ -84,60 +84,46 @@ Development environment
 
 The purpose of the development environment is only for running the different test and metric tools.
 
-To get started, first setup the development environment. The dev. env. is a virtual machine. Every task described is run
-from that machine.  
+To get started, first setup the development environment. The development environment is a docker container. That is
+controlled via the [OpenConext-devconf](https://github.com/OpenConext/OpenConext-devconf/) project.
+
+Every task described below should be run from that container.
 
 Requirements
 -------------------
-- vagrant 2.2.x
-    - vagrant-hostsupdater (1.1.1.160, global)
-    - vagrant-vbguest (0.19.0, global)
-- Virtualbox
-- Composer
+- Docker
+- OpenConext-devconf
 
 Install
 -------------------
-**Create a .env file**
-
-1. `$ cp .env.ci .env`
-1. Edit the `.env` file with the editor of your choice and update the `APP_SECRET` to a value of your liking. See [Symfony docs](https://symfony.com/doc/current/reference/configuration/framework.html#secret) for more details about this secret. 
-
-
 **Copy the parameters.yaml**
 
-`$ cp config/packages/parameters.yaml.dist config/packages/parameters.yaml`
+`$ cp config/openconext/parameters.yaml.dist config/openconext/parameters.yaml`
 
-**Bring up Homestead**
+**Bring up the container in dev-mode**
+From you dev-conf installation start the `stepup` dev-env with AzureMFA in dev mode
 
+For example:
+
+```bash
+cd stepup
+./start-dev-env.sh demogssp:../../OpenConext-stepup/Stepup-gssp-example
 ```
-$ cd homestead
-$ composer install
-$ cd ..
-$ vagrant up
-```
-
-If everything goes as intended, you can develop in the virtual machine.
-
-**Upgrade Homestead regularly**
-
-Issues described in the previous section can be prevented if the base box is up to date.
-
-For detailed instructions, please visit the excellent Homestead [documentation pages](https://laravel.com/docs/5.8/homestead#updating-homestead).
 
 **Building frontend assets:**
 
-`$ yarn encore dev` 
+`$ yarn encore dev`
 
-or 
+or
 
-`$ yarn encore prod` 
+`$ yarn encore prod`
 
-for production 
+for production
 
 
 If everything goes as planned you can go to:
 
-[https://demogssp.dev.openconext.local](https://demogssp.dev.openconext.local/app_dev.php)
+[https://demogssp.dev.openconext.local](https://demogssp.dev.openconext.local/)
 
 Debugging
 -------------------
