@@ -1,0 +1,19 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Surfnet\Gssp\Test\Features\Context\WebContext:
+        public: true
+        arguments:
+            - "@kernel"
+
+    Dev\:
+        resource: '../dev/*'
+        exclude: '../dev/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    Dev\Controller\:
+        resource: '../dev/Controller'
+        tags: [ 'controller.service_arguments' ]
