@@ -2,6 +2,9 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
+    app_env: prod
+    app_debug: false
+    app_secret: $37_4_$3cr37_4$4P
     saml_idp_publickey: '/config/demogssp/demo_gssp_idp.crt'
     saml_idp_privatekey: '/config/demogssp/demo_gssp_idp.key'
     saml_metadata_publickey: '/config/demogssp/demo_gssp_idp.crt'

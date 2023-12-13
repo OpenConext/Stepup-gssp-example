@@ -27,10 +27,10 @@
     "surfnet/stepup-gssp-bundle": "^5.0",
     "symfony/asset": "^6.4",
     "symfony/console": "^6.4",
-    "symfony/dotenv": "^6.4",
     "symfony/flex": "^2.3",
     "symfony/form": "^6.4",
     "symfony/monolog-bundle": "^3.8",
+    "symfony/runtime": "6.4.*",
     "symfony/templating": "^6.4",
     "symfony/translation": "^6.4",
     "symfony/twig-bundle": "^6.4",
@@ -114,6 +114,9 @@
     ]
   },
   "extra": {
+    "runtime": {
+      "disable_dotenv": true
+    },
     "symfony": {
       "allow-contrib": false,
       "require": "6.4.*"
@@ -128,7 +131,8 @@
     "sort-packages": true,
     "allow-plugins": {
       "symfony/flex": true,
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "symfony/runtime": true
     }
   }
 }
