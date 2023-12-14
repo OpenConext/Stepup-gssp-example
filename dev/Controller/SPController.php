@@ -36,6 +36,8 @@ use Surfnet\SamlBundle\SAML2\AuthnRequest;
 use Surfnet\SamlBundle\SAML2\AuthnRequestFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use function is_bool;
+use function is_string;
 
 /**
  * Demo SP.
@@ -59,12 +61,20 @@ final class SPController extends AbstractController
 
         // Set nameId when we want to authenticate.
         if ($request->get('action') === 'authenticate') {
-            $authnRequest->setSubject($request->get('NameID'));
+            $nameId = $request->get('NameID');
+            if (!is_string($nameId)) {
+                throw new Exception('NameID is not a string..');
+            }
+            $authnRequest->setSubject($nameId);
         }
 
         // Build request query parameters.
         $requestAsXml = $authnRequest->getUnsignedXML();
-        $encodedRequest = base64_encode(gzdeflate($requestAsXml));
+        $deflated = gzdeflate($requestAsXml);
+        if (is_bool($deflated)) {
+            throw new Exception('Unable to deflate $requestAsXml');
+        }
+        $encodedRequest = base64_encode($deflated);
         $queryParams = [AuthnRequest::PARAMETER_REQUEST => $encodedRequest];
         $relayState = $request->get(AuthnRequest::PARAMETER_RELAY_STATE);
         if (!empty($relayState)) {
@@ -90,7 +100,7 @@ final class SPController extends AbstractController
     {
         $xmlResponse = $request->request->get('SAMLResponse');
         $xml = base64_decode($xmlResponse);
-        if ($xml === false) {
+        if (!is_string($xml)) {
             throw new Exception('Unable to base64 decode the xml response');
         }
         try {
@@ -134,7 +144,7 @@ final class SPController extends AbstractController
         $domxml->loadXML($xml);
 
         $result = $domxml->saveXML();
-        if ($result === false) {
+        if (!is_string($result)) {
             throw new Exception('Unable to create valid XML from the provided document');
         }
         return $result;
@@ -145,13 +155,14 @@ final class SPController extends AbstractController
      */
     private function signRequestQuery(array $queryParams): string
     {
-        /** @var  $securityKey */
         $securityKey = $this->loadServiceProviderPrivateKey();
         $queryParams[AuthnRequest::PARAMETER_SIGNATURE_ALGORITHM] = $securityKey->type;
         $toSign = http_build_query($queryParams);
         $signature = $securityKey->signData($toSign);
-
-        return $toSign.'&Signature='.urlencode(base64_encode((string) $signature));
+        if (!is_string($signature)) {
+            throw new Exception('Unable to sign the AuthnRequest');
+        }
+        return $toSign.'&Signature='.urlencode(base64_encode($signature));
     }
 
     /**

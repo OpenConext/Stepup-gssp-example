@@ -1,6 +1,41 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Call to an undefined method SAML2\\\\Message\\:\\:getStatus\\(\\)\\.$#"
+			count: 1
+			path: ../../dev/Controller/SPController.php
+
+		-
+			message: "#^Cannot call method getValue\\(\\) on SAML2\\\\XML\\\\saml\\\\Issuer\\|null\\.$#"
+			count: 1
+			path: ../../dev/Controller/SPController.php
+
+		-
+			message: "#^Method Dev\\\\Controller\\\\SPController\\:\\:signRequestQuery\\(\\) has parameter \\$queryParams with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: ../../dev/Controller/SPController.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of method SAML2\\\\Certificate\\\\PrivateKeyLoader\\:\\:loadPrivateKey\\(\\) expects SAML2\\\\Configuration\\\\PrivateKey, mixed given\\.$#"
+			count: 1
+			path: ../../dev/Controller/SPController.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function base64_decode expects string, bool\\|float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: ../../dev/Controller/SPController.php
+
+		-
+			message: "#^Parameter \\#1 \\$xml of static method SAML2\\\\Message\\:\\:fromXML\\(\\) expects DOMElement, DOMElement\\|null given\\.$#"
+			count: 1
+			path: ../../dev/Controller/SPController.php
+
+		-
+			message: "#^Parameter \\#2 \\$values of method Symfony\\\\Component\\\\HttpFoundation\\\\ResponseHeaderBag\\:\\:set\\(\\) expects array\\<string\\>\\|string\\|null, mixed given\\.$#"
+			count: 1
+			path: ../../dev/Controller/SPController.php
+
+		-
 			message: "#^Call to an undefined method Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface\\:\\:setLocale\\(\\)\\.$#"
 			count: 1
 			path: ../../src/Surfnet/Gssp/Infrastructure/EventSubscriber/LocaleResponseListener.php
