@@ -47,7 +47,7 @@ final class SPController extends AbstractController
     public function __construct(
         private readonly ServiceProvider $serviceProvider,
         private readonly IdentityProvider $identityProvider,
-        private readonly PostBinding $postBinding
+        private readonly PostBinding $postBinding,
     ) {
     }
 

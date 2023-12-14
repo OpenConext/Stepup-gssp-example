@@ -32,7 +32,7 @@ class DefaultController extends AbstractController
 {
     public function __construct(
         private readonly AuthenticationService $authenticationService,
-        private readonly RegistrationService $registrationService
+        private readonly RegistrationService $registrationService,
     ) {
     }
 
