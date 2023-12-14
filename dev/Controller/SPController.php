@@ -18,6 +18,7 @@
 namespace Dev\Controller;
 
 use Exception;
+use SAML2\Response as SamlResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -170,10 +171,7 @@ final class SPController extends AbstractController
 
     private function toUnsignedErrorResponse(string $xml): Message
     {
-        $previous = libxml_disable_entity_loader(true);
         $asXml = DOMDocumentFactory::fromString($xml);
-        libxml_disable_entity_loader($previous);
-
-        return \SAML2\Response::fromXML($asXml->documentElement);
+        return SamlResponse::fromXML($asXml->documentElement);
     }
 }
