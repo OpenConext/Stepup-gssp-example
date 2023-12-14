@@ -41,13 +41,10 @@ class WebContext implements Context
 {
     protected MinkContext $minkContext;
 
-    protected KernelInterface $kernel;
-
     protected string $previousMinkSession;
 
-    public function __construct(KernelInterface $kernel)
+    public function __construct(protected KernelInterface $kernel)
     {
-        $this->kernel = $kernel;
     }
 
     /**
