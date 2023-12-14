@@ -17,6 +17,7 @@
 
 namespace Dev\Controller;
 
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -88,6 +89,9 @@ final class SPController extends AbstractController
     {
         $xmlResponse = $request->request->get('SAMLResponse');
         $xml = base64_decode($xmlResponse);
+        if ($xml === false) {
+            throw new Exception('Unable to base64 decode the xml response');
+        }
         try {
             $response = $this->postBinding->processResponse($request, $this->identityProvider, $this->serviceProvider);
 
@@ -121,14 +125,18 @@ final class SPController extends AbstractController
     /**
      * Formats xml.
      */
-    private function toFormattedXml(string|bool $xml): string|bool
+    private function toFormattedXml(string $xml): string
     {
         $domxml = new DOMDocument('1.0');
         $domxml->preserveWhiteSpace = false;
         $domxml->formatOutput = true;
         $domxml->loadXML($xml);
 
-        return $domxml->saveXML();
+        $result = $domxml->saveXML();
+        if ($result === false) {
+            throw new Exception('Unable to create valid XML from the provided document');
+        }
+        return $result;
     }
 
     /**
