@@ -67,7 +67,7 @@ final class ErrorReportContext implements Context
 
             $this->saveErrorFile($scope, $filename);
             $this->takeScreenShotAfterFailedStep($filename);
-        } catch (DriverException $exception) {
+        } catch (DriverException) {
             return;
         }
     }
@@ -75,7 +75,7 @@ final class ErrorReportContext implements Context
     /**
      * Saves screenshot.
      *
-     * @throws \Behat\Mink\Exception\DriverException
+     * @throws DriverException
      */
     private function takeScreenShotAfterFailedStep(string $fileName): void
     {

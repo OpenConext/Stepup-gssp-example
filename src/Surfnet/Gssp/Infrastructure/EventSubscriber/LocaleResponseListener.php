@@ -37,8 +37,10 @@ final readonly class LocaleResponseListener implements EventSubscriberInterface
 {
     public const STEPUP_LOCALE_COOKIE = 'stepup_locale';
 
-    public function __construct(private TranslatorInterface $translator, private RequestStack $requestStack)
-    {
+    public function __construct(
+        private TranslatorInterface $translator,
+        private RequestStack $requestStack,
+    ) {
     }
 
     public static function getSubscribedEvents(): array

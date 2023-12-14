@@ -22,23 +22,24 @@ namespace Surfnet\Gssp\Infrastructure\Twig;
 
 use RuntimeException;
 use Surfnet\SamlBundle\Entity\HostedEntities;
+use Surfnet\SamlBundle\Entity\IdentityProvider;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 final class GsspExtension extends AbstractExtension
 {
-    public function __construct(private readonly HostedEntities $hostedEntities)
+    public function __construct(private readonly HostedEntities $hostedEntities,)
     {
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [new TwigFunction('demoSpUrl', $this->generateDemoSPUrl(...))];
     }
 
     public function generateDemoSPUrl(): string
     {
-        if (!$this->hostedEntities->getIdentityProvider() instanceof \Surfnet\SamlBundle\Entity\IdentityProvider) {
+        if (!$this->hostedEntities->getIdentityProvider() instanceof IdentityProvider) {
             throw new RuntimeException(
                 'Unable to retrieve the Demo SP URL, it is not configured correctly in hosted idp section.'
             );

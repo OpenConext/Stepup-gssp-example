@@ -45,10 +45,10 @@ class Kernel extends BaseKernel
 
     public function getProjectDir(): string
     {
-        return \dirname(__DIR__, 4);
+        return dirname(__DIR__, 4);
     }
 
-    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
+    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader,): void
     {
         $container->addResource(new FileResource($this->getProjectDir().'/config/bundles.php'));
         $container->setParameter('container.dumper.inline_class_loader', true);
