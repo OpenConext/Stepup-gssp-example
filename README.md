@@ -79,6 +79,16 @@ Install from a clean or exiting symfony project
 1) [Install Symfony](http://symfony.com/doc/current/setup.html) 
 2) Follow the instructions from the [GSSP bundle](https://github.com/OpenConext/Stepup-gssp-bundle)
 
+Setting the desired Symfony application environment
+===================================================
+There are 2 ways you can influence the desired Symfony application environment.
+
+1. Set the `app_env` parameter in `config/openconext/parameters.yaml` to `dev`, `test` or `prod`
+2. Override the `app_env` param by providing an environment variable named `APP_ENV`
+
+- The default value for the application environment will be `prod`
+- Do not try to use a .env file to override the `app_env` param. That file will not be evaluated by Symfony as we decided not use the DotEnv component.
+
 Development environment
 ======================
 
