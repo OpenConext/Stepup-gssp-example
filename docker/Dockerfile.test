@@ -9,7 +9,6 @@ WORKDIR /var/www/html
 COPY --from=unpack /unpack/ /var/www/html/
 # Add the application configuration files
 COPY config/openconext/parameters.yaml.dist config/openconext/parameters.yaml
-COPY .env.docker .env
 
 # Add the config files for Apache2
 RUN rm -rf /etc/apache2/sites-enabled/*
