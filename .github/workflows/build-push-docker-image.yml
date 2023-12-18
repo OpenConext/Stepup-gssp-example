@@ -42,13 +42,3 @@ jobs:
             ghcr.io/openconext/stepup-gssp-example/stepup-gssp-example:prod
             ghcr.io/openconext/stepup-gssp-example/stepup-gssp-example:${{ github.sha }}
             ghcr.io/openconext/stepup-gssp-example/stepup-gssp-example:${{ steps.release.outputs.tag_name }}
-
-      - name: Build and push the Development image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: docker/Dockerfile.dev
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: |
-            ghcr.io/openconext/stepup-gssp-example/stepup-gssp-example:dev
