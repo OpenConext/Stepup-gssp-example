@@ -1,4 +1,4 @@
-name: release
+name: Create release and Build and Push docker production image
 
 on:
   push:
