@@ -25,7 +25,7 @@ jobs:
 
   build-and-push-container:
     needs: prepare
-    uses: openconext/openconext-githubactions/.github/workflows/build-push-docker-image.yml
+    uses: openconext/openconext-githubactions/.github/workflows/build-push-docker-image.yml@main
     with:
       component_name: "Stepup-gssp-example"
       tag: ${{ needs.prepare.outputs.tag }}
