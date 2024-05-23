@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - "*.*.*"
-    branches:
-      - "feature/use_reusable_workflows"
   workflow_dispatch:
 
 jobs:
@@ -15,12 +13,19 @@ jobs:
       tag: ${{ steps.set_tag.outputs.tag }}
     steps:
       - name: Extract tag from GITHUB_REF
-        id: set_tag
-        run: echo "::set-output name=tag::${GITHUB_REF#refs/*/}"
+        id: set_tag        
+        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
   
   build-release:
     needs: prepare
     uses: openconext/openconext-githubactions/.github/workflows/build-release.yml@main
+    with:
+      component_name: "Stepup-gssp-example"
+      tag: ${{ needs.prepare.outputs.tag }}
+
+  build-and-push-container:
+    needs: prepare
+    uses: openconext/openconext-githubactions/.github/workflows/build-push-docker-image.yml
     with:
       component_name: "Stepup-gssp-example"
       tag: ${{ needs.prepare.outputs.tag }}
