@@ -9,8 +9,18 @@ on:
   workflow_dispatch:
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.set_tag.outputs.tag }}
+    steps:
+      - name: Extract tag from GITHUB_REF
+        id: set_tag
+        run: echo "::set-output name=tag::${GITHUB_REF#refs/*/}"
+  
   build-release:
+    needs: prepare
     uses: openconext/openconext-githubactions/.github/workflows/build-release.yml@main
     with:
       component_name: "Stepup-gssp-example"
-      tag: ${GITHUB_REF#refs/*/}
+      tag: ${{ needs.prepare.outputs.tag }}
