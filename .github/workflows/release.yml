@@ -4,28 +4,9 @@ on:
   push:
     tags:
       - "*.*.*"
-  workflow_dispatch:
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    outputs:
-      tag: ${{ steps.set_tag.outputs.tag }}
-    steps:
-      - name: Extract tag from GITHUB_REF
-        id: set_tag        
-        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
-  
-  build-release:
-    needs: prepare
-    uses: openconext/openconext-githubactions/.github/workflows/build-release.yml@main
+  build-release-and-push-container:
+    uses: openconext/openconext-githubactions/.github/workflows/symfony-release.yml@main
     with:
       component_name: "Stepup-gssp-example"
-      tag: ${{ needs.prepare.outputs.tag }}
-
-  build-and-push-container:
-    needs: [ build-release, prepare ]
-    uses: openconext/openconext-githubactions/.github/workflows/build-push-docker-image.yml@main
-    with:
-      component_name: "Stepup-gssp-example"
-      tag: ${{ needs.prepare.outputs.tag }}
