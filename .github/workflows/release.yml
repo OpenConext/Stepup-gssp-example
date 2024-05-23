@@ -1,0 +1,16 @@
+name: tag-release
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+    branches:
+      - "feature/use_reusable_workflows"
+  workflow_dispatch:
+
+jobs:
+  build-release:
+    uses: openconext/openconext-githubactions/.github/workflows/build-release.yml@main
+    with:
+      component_name: "Stepup-gssp-example"
+      tag: ${GITHUB_REF#refs/*/}
