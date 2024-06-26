@@ -1,9 +1,9 @@
 Stepup-gssp-example
 ===================
 
-<a href="#">
-    <img src="https://travis-ci.org/OpenConext/Stepup-gssp-bundle.svg?branch=master" alt="build:">
-</a></br>
+[![Build status](https://github.com/OpenConext/Stepup-gssp-example/actions/workflows/test-integration.yml/badge.svg)](https://github.com/OpenConext/Stepup-gssp-example/actions/workflows/test-integration.yml)
+
+
 
 Example Generic SAML Stepup Provider.
 
