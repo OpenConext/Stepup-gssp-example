@@ -3,7 +3,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@babel/preset-env": "^7.20.2",
-    "@symfony/webpack-encore": "^4",
+    "@symfony/webpack-encore": "^5",
     "compass-mixins": "^0.12",
     "css-loader": "^6",
     "file-loader": "^6.0.0",
