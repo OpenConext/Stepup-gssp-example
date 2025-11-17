@@ -15,7 +15,7 @@
     "webpack-import-glob-loader": "^1.6.3"
   },
   "dependencies": {
-    "js-yaml": "^3.13.1",
+    "js-yaml": "^4.1.1",
     "postcss": ">=8.4.31",
     "select2": "~4",
     "yarn": "^1.22.19"
