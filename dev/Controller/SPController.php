@@ -99,8 +99,8 @@ final class SPController extends AbstractController
     public function assertionConsumerService(Request $request): Response
     {
         $xmlResponse = $request->request->get('SAMLResponse');
-        $xml = base64_decode($xmlResponse);
-        if (!is_string($xml)) {
+        $xml = base64_decode($xmlResponse, true);
+        if ($xml === false) {
             throw new Exception('Unable to base64 decode the xml response');
         }
         try {
