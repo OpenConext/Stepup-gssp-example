@@ -13,9 +13,7 @@
   "autoload-dev": {
     "psr-4": {
       "Dev\\": "dev",
-      "Surfnet\\Gssp\\Test\\Features\\": "tests\\Functional\\Features",
-      "Surfnet\\Gssp\\Test\\Unit\\": "tests\\Unit",
-      "Surfnet\\Gssp\\Test\\WebTest\\": "tests\\Functional\\WebTests"
+      "Surfnet\\Gssp\\Test\\Features\\": "tests\\Functional\\Features"
     }
   },
   "require": {
@@ -62,7 +60,8 @@
   "scripts": {
     "check": [
       "@check-ci",
-      "@rector"
+      "@rector",
+      "@behat"
     ],
     "check-ci": [
       "@composer-validate",

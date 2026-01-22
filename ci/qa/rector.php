@@ -8,11 +8,12 @@ return RectorConfig::configure()
     ->withPaths([
          __DIR__ . '/../../config',
          __DIR__ . '/../../src',
+         __DIR__ . '/../../tests',
          __DIR__ . '/../../templates',
     ])
-//    ->withPhpSets()
-//    ->withAttributesSets(all: true)
+    ->withPhpSets()
+    ->withAttributesSets(all: true)
     ->withComposerBased(twig: true, doctrine: true, phpunit: true, symfony: true)
     ->withPHPStanConfigs([__DIR__.'/phpstan.neon'])
-//    ->withPreparedSets(deadCode: true)
+    ->withPreparedSets(deadCode: true)
 ;

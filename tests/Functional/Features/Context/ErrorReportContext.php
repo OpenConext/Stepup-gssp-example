@@ -38,18 +38,14 @@ final class ErrorReportContext implements Context
 {
     private MinkContext $minkContext;
 
-    /**
-     * @BeforeScenario
-     */
+    #[\Behat\Hook\BeforeScenario]
     public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $environment = $scope->getEnvironment();
         $this->minkContext = $environment->getContext(MinkContext::class);
     }
 
-    /**
-     * @AfterStep
-     */
+    #[\Behat\Hook\AfterStep]
     public function dumpInfoAfterFailedStep(AfterStepScope $scope): void
     {
         if ($this->stepIsSuccessful($scope)) {
@@ -63,7 +59,7 @@ final class ErrorReportContext implements Context
                 $step = $this->getBackGroundStep($scope);
                 $title = $step->getNodeType().'-'.$step->getText();
             }
-            $filename = preg_replace('/[^a-zA-Z0-9]/', '-', $title);
+            $filename = preg_replace('/[^a-zA-Z0-9]/', '-', (string) $title);
 
             $this->saveErrorFile($scope, $filename);
             $this->takeScreenShotAfterFailedStep($filename);
