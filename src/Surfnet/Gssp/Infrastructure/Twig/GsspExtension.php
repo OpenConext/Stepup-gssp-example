@@ -23,20 +23,15 @@ namespace Surfnet\Gssp\Infrastructure\Twig;
 use RuntimeException;
 use Surfnet\SamlBundle\Entity\HostedEntities;
 use Surfnet\SamlBundle\Entity\IdentityProvider;
-use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
+use Twig\Attribute\AsTwigFunction;
 
-final class GsspExtension extends AbstractExtension
+final readonly class GsspExtension
 {
-    public function __construct(private readonly HostedEntities $hostedEntities,)
+    public function __construct(private HostedEntities $hostedEntities,)
     {
     }
 
-    public function getFunctions(): array
-    {
-        return [new TwigFunction('demoSpUrl', $this->generateDemoSPUrl(...))];
-    }
-
+    #[AsTwigFunction(name: 'demoSpUrl')]
     public function generateDemoSPUrl(): string
     {
         if (!$this->hostedEntities->getIdentityProvider() instanceof IdentityProvider) {
