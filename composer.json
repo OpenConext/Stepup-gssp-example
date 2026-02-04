@@ -66,6 +66,7 @@
       "@docheader",
       "@lint",
       "@phpcs",
+      "@jscpd",
       "@phpmd",
       "@phpstan"
     ],
@@ -81,6 +82,7 @@
     "phpmd": "./ci/qa/phpmd",
     "phpstan": "./ci/qa/phpstan",
     "phpstan-baseline": "./ci/qa/phpstan-update-baseline",
+    "jscpd": "ci/qa/jscpd",
     "frontend-install": [
       "yarn install",
       "yarn encore prod"
