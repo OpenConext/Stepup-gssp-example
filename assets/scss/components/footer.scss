@@ -1,3 +1,8 @@
+@use "sass:color";
+@use "../vars";
+@use "../utilities/media_queries";
+@use "../base/mixins";
+
 div.footer {
 
   padding: 15px;
@@ -5,13 +10,13 @@ div.footer {
   margin-top: 25px;
 
   div.footer-inner {
-    @include page;
+    @include mixins.page;
 
     display: flex;
     align-items: flex-end;
 
     span {
-      border-right: 1px solid $lighter-grey;
+      border-right: 1px solid vars.$lighter-grey;
       &:first-child {
         margin-left: auto;
       }
@@ -21,7 +26,7 @@ div.footer {
     }
 
     a {
-      color: darken($blue, 10%);
+      color: color.adjust(vars.$blue, $lightness: -10%);
       &:visited, &:hover {
         text-decoration: none;
       }
@@ -29,7 +34,7 @@ div.footer {
       padding: 0 15px;
     }
 
-    @include phone {
+    @include media_queries.phone {
       flex-direction: column;
       span {
         padding: 5px 0;

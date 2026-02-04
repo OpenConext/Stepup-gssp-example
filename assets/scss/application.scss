@@ -1,22 +1,20 @@
-@import "../../node_modules/compass-mixins";
-@include global-reset ;
+@use "sass:meta";
 
-$fa-font-path: "../../fonts";
-@import "fonts/font-awesome";
-@import "fonts/roboto";
+@include meta.load-css("fonts/font-awesome", $with: ("fa-font-path": "../../fonts"));
+@include meta.load-css("fonts/roboto");
 
-@import "vars";
-@import "utilities/reset";
+@include meta.load-css("vars");
+@include meta.load-css("utilities/reset");
 
-@import "base/base";
-@import "base/mixins";
-@import "utilities/media_queries";
-@import "components/header";
-@import "components/button";
-@import "components/form";
-@import "components/alerts";
-@import "components/icon_legend";
-@import "components/table";
-@import "components/navigation";
-@import "components/footer";
-@import "pages/base";
+@include meta.load-css("base/base");
+@include meta.load-css("base/mixins");
+@include meta.load-css("utilities/media_queries");
+@include meta.load-css("components/header");
+@include meta.load-css("components/button");
+@include meta.load-css("components/form");
+@include meta.load-css("components/alerts");
+@include meta.load-css("components/icon_legend");
+@include meta.load-css("components/table");
+@include meta.load-css("components/navigation");
+@include meta.load-css("components/footer");
+@include meta.load-css("pages/base");

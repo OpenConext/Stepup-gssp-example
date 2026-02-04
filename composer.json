@@ -3,7 +3,7 @@
   "license": "Apache-2.0",
   "description": "Example Generic SAML Stepup Provider.",
   "type": "project",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "prefer-stable": true,
   "autoload": {
     "psr-4": {
@@ -22,7 +22,7 @@
     "ext-libxml": "*",
     "ext-zlib": "*",
     "incenteev/composer-parameter-handler": "^2.1",
-    "surfnet/stepup-gssp-bundle": "dev-feature/update#e667625",
+    "surfnet/stepup-gssp-bundle": "^6.0",
     "symfony/asset": "^7.4",
     "symfony/console": "^7.4",
     "symfony/flex": "^2.3",
@@ -85,7 +85,13 @@
     "jscpd": "ci/qa/jscpd",
     "frontend-install": [
       "yarn install",
-      "yarn encore prod"
+      "yarn encore prod",
+      "./bin/console cache:clear",
+      "@fix-dev-permissions"
+    ],
+    "fix-dev-permissions": [
+      "chown -R www-data:www-data /var/www/html/var/log",
+      "chown -R www-data:www-data /var/www/html/var/cache"
     ],
     "auto-scripts": {
       "cache:clear": "symfony-cmd",

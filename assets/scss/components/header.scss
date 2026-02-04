@@ -1,3 +1,7 @@
+@use "../vars";
+@use "../utilities/media_queries";
+@use "../base/mixins";
+
 .flash.hide + div.header-container {
   .header {
     margin: 0 auto;
@@ -10,22 +14,22 @@
   background-color: white;
 
   .header {
-    max-width: $medium;
+    max-width: vars.$medium;
     margin: 40px auto 0 auto;
     margin-top: 0px;
     padding: 15px 15px 40px 15px;
     position: relative;
     transition: margin 150ms ease-in-out;
 
-    @include phone {
+    @include media_queries.phone {
       margin: 85px auto 0 auto;
     }
 
 
     a {
-      color: $blue;
+      color: vars.$blue;
       font-weight: bold;
-      @include no-text-decoration;
+      @include mixins.no-text-decoration;
     }
 
 
@@ -33,7 +37,7 @@
       position: absolute;
       top: 13px;
 
-      @include phone {
+      @include media_queries.phone {
         position: initial;
       }
 
@@ -68,9 +72,9 @@
           font-weight: bold;
           text-transform: uppercase;
           font-size: 22px;
-          color: $blue;
+          color: vars.$blue;
 
-          @include phone {
+          @include media_queries.phone {
             margin-left: 0;
           }
         }
@@ -80,9 +84,9 @@
         }
 
         &.border-left {
-          border-left: 1px solid $blue;
+          border-left: 1px solid vars.$blue;
           padding-left: 15px;
-          @include phone {
+          @include media_queries.phone {
             display: none;
           }
         }
@@ -90,8 +94,8 @@
         ul.language-selector {
           margin-left: 25px;
           list-style: none;
-          border: 1px solid $blue;
-          border-radius: $br;
+          border: 1px solid vars.$blue;
+          border-radius: vars.$br;
           font-size: medium;
 
           li {
@@ -110,7 +114,7 @@
               font-weight: normal;
             }
             &.active {
-              background-color: $blue;
+              background-color: vars.$blue;
               a {
                 color: white;
               }
@@ -133,9 +137,9 @@
         min-width: 300px;
         top: 50px;
         background: #fff;
-        border-radius: $br;
-        box-shadow: 1px 1px $br rgba(black, .3);
-        @include phone {
+        border-radius: vars.$br;
+        box-shadow: 1px 1px vars.$br rgba(black, .3);
+        @include media_queries.phone {
           display: none;
         }
 

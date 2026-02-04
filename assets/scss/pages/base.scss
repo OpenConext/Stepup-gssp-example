@@ -1,6 +1,9 @@
+@use "../vars";
+@use "../base/mixins";
+
 .page-container {
 
-  @include page;
+  @include mixins.page;
 
   h1 {
     margin: 35px 0 20px 0;
