@@ -1,3 +1,6 @@
+# 3.0.0
+Make the project Symfony 7.4 compatible.
+
 # 2.0.0
 Make the project Symfony 6 and PHP 8.2 compatible.
 Many changes were made to achieve this goal. Some highlights:
