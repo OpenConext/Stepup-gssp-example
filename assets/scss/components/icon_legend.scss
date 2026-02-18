@@ -1,3 +1,6 @@
+@use "../vars";
+@use "../utilities/media_queries";
+
 div.icon-legend {
   display: flex;
   align-items: center;
@@ -11,12 +14,12 @@ div.icon-legend {
   section.roles {
     margin-left: auto;
 
-    @include phone {
+    @include media_queries.phone {
       display: none;
     }
 
     span.role {
-      color: $medium-grey;
+      color: vars.$medium-grey;
       margin-left: 18px;
       font-weight: bold;
       i {

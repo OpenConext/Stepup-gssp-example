@@ -1,3 +1,0 @@
-controllers:
-    resource: ../../src/Surfnet/Gssp/Infrastructure/Controller/
-    type: annotation

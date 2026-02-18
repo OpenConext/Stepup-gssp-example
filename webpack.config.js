@@ -11,9 +11,10 @@ Encore
     .addStyleEntry('global', './assets/scss/application.scss')
     .addLoader({ test: /\.scss$/, loader: 'webpack-import-glob-loader' })
     .enableSassLoader(function (options) {
+        options.api = 'modern';
         options.sassOptions = {
             outputStyle: 'expanded',
-            includePaths: ['public'],
+            loadPaths: ['public'],
         };
     })
     .autoProvidejQuery()

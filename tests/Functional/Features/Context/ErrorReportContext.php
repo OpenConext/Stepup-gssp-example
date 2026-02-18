@@ -26,6 +26,8 @@ use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Behat\Hook\Scope\StepScope;
 use Behat\Gherkin\Node\NodeInterface;
 use Behat\Gherkin\Node\ScenarioInterface;
+use Behat\Hook\AfterStep;
+use Behat\Hook\BeforeScenario;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\DriverException;
 use Behat\MinkExtension\Context\MinkContext;
@@ -38,18 +40,14 @@ final class ErrorReportContext implements Context
 {
     private MinkContext $minkContext;
 
-    /**
-     * @BeforeScenario
-     */
+    #[BeforeScenario]
     public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $environment = $scope->getEnvironment();
         $this->minkContext = $environment->getContext(MinkContext::class);
     }
 
-    /**
-     * @AfterStep
-     */
+    #[AfterStep]
     public function dumpInfoAfterFailedStep(AfterStepScope $scope): void
     {
         if ($this->stepIsSuccessful($scope)) {
@@ -63,7 +61,7 @@ final class ErrorReportContext implements Context
                 $step = $this->getBackGroundStep($scope);
                 $title = $step->getNodeType().'-'.$step->getText();
             }
-            $filename = preg_replace('/[^a-zA-Z0-9]/', '-', $title);
+            $filename = preg_replace('/[^a-zA-Z0-9]/', '-', (string) $title);
 
             $this->saveErrorFile($scope, $filename);
             $this->takeScreenShotAfterFailedStep($filename);

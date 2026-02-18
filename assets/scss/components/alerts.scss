@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "../vars";
+
 div.alert {
 
   border: 1px solid transparent;
@@ -5,20 +8,20 @@ div.alert {
   margin: 0.75rem 0;
   border-radius: .25rem;
 
-  background-color: $light-grey;
+  background-color: vars.$light-grey;
 
   &.alert-info,
   &.info {
-    background-color: darken($green, 15%);
+    background-color: color.adjust(vars.$green, $lightness: -15%);
   }
   &.alert-warning,
   &.warning {
-    background-color: $orange;
+    background-color: vars.$orange;
   }
   &.alert-error,
   &.error {
-    background-color: $red;
-    color: $light-grey;
+    background-color: vars.$red;
+    color: vars.$light-grey;
   }
 
   i.fa {

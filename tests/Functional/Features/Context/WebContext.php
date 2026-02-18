@@ -20,9 +20,12 @@ declare(strict_types = 1);
 
 namespace Surfnet\Gssp\Test\Features\Context;
 
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Behat\MinkExtension\Context\MinkContext;
 use Behat\Behat\Context\Context;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Hook\BeforeScenario;
+use Behat\MinkExtension\Context\MinkContext;
+use Behat\Step\Given;
+use Behat\Step\When;
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\AuthnRequest;
@@ -33,6 +36,7 @@ use SAML2\XML\saml\Issuer;
 use Surfnet\SamlBundle\Entity\IdentityProvider;
 use Surfnet\SamlBundle\Entity\ServiceProvider;
 use Surfnet\SamlBundle\Exception\NotFound;
+use Surfnet\SamlBundle\SAML2\AuthnRequest as SamlBundleAuthnRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -49,9 +53,8 @@ class WebContext implements Context
 
     /**
      * Fetch the required contexts.
-     *
-     * @BeforeScenario
      */
+    #[BeforeScenario]
     public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $environment = $scope->getEnvironment();
@@ -61,10 +64,10 @@ class WebContext implements Context
     /**
      * Create AuthnRequest from demo IdP.
      *
-     * @When the service provider send the AuthnRequest with HTTP-Redirect binding
      *
      * @throws NotFound
      */
+    #[When('the service provider send the AuthnRequest with HTTP-Redirect binding')]
     public function callIdentityProviderSSOActionWithAuthnRequest(): void
     {
         $this->minkContext->visit('https://pieter.aai.surfnet.nl/simplesamlphp/sp.php?sp=default-sp');
@@ -95,10 +98,9 @@ class WebContext implements Context
     }
 
     /**
-     * @Given /^a normal SAML 2.0 AuthnRequest form a unknown service provider$/
-     *
      * @throws Exception
      */
+    #[Given('/^a normal SAML 2.0 AuthnRequest form a unknown service provider$/')]
     public function aNormalSAMLAuthnRequestFormAUnknownServiceProvider(): void
     {
         $issuer = new Issuer();
@@ -112,10 +114,10 @@ class WebContext implements Context
 
         // Sign with random key, does not mather for now.
         $authnRequest->setSignatureKey(
-            $this->loadPrivateKey($this->getIdentityProvider()->getPrivateKey(PrivateKey::NAME_DEFAULT))
+            self::loadPrivateKey($this->getIdentityProvider()->getPrivateKey(PrivateKey::NAME_DEFAULT))
         );
 
-        $request = \Surfnet\SamlBundle\SAML2\AuthnRequest::createNew($authnRequest);
+        $request = SamlBundleAuthnRequest::createNew($authnRequest);
         $query = $request->buildRequestQuery();
         $this->minkContext->visitPath('/saml/sso?' . $query);
     }

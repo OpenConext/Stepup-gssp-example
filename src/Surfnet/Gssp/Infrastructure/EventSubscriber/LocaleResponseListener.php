@@ -78,8 +78,6 @@ final readonly class LocaleResponseListener implements EventSubscriberInterface
 
     /**
      * Return's the naked domain for the cookie variables so that is shared between the different sub-domains.
-     *
-     * @return string
      */
     private function getNakedDomain(): string
     {
