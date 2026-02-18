@@ -20,10 +20,10 @@ declare(strict_types = 1);
 
 namespace Surfnet\Gssp\Test\Features\Context;
 
+use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Hook\BeforeScenario;
 use Behat\MinkExtension\Context\MinkContext;
-use Behat\Behat\Context\Context;
 use Behat\Step\Given;
 use Behat\Step\When;
 use Exception;
@@ -36,6 +36,7 @@ use SAML2\XML\saml\Issuer;
 use Surfnet\SamlBundle\Entity\IdentityProvider;
 use Surfnet\SamlBundle\Entity\ServiceProvider;
 use Surfnet\SamlBundle\Exception\NotFound;
+use Surfnet\SamlBundle\SAML2\AuthnRequest as SamlBundleAuthnRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -116,7 +117,7 @@ class WebContext implements Context
             self::loadPrivateKey($this->getIdentityProvider()->getPrivateKey(PrivateKey::NAME_DEFAULT))
         );
 
-        $request = \Surfnet\SamlBundle\SAML2\AuthnRequest::createNew($authnRequest);
+        $request = SamlBundleAuthnRequest::createNew($authnRequest);
         $query = $request->buildRequestQuery();
         $this->minkContext->visitPath('/saml/sso?' . $query);
     }
