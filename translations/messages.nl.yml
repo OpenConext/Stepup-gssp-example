@@ -76,6 +76,7 @@ page.registration.register_user: Gebruiker registreren
 page.registration.error_response: Foutreactie
 page.registration.random_default_error: willekeurige registratiefout
 page.registration.submit_error: Zend een registratie mislukt response
+page.registration.service_name: Dienstnaam
 
 page.authentication.title: Authenticeer (verifieer) de gebruiker
 page.authentication.sub_title: Verifiëren
@@ -86,6 +87,7 @@ page.authentication.authenticate_user: Gebruiker verifiëren
 page.authentication.error_response: Foutreactie
 page.authentication.random_default_error: Willekeurige authenticatiefout
 page.authentication.submit_error: Zend een verificatie mislukt response
+page.authentication.service_name: Dienstnaam
 
 saml.request_id: RequestId
 saml.issuer: Uitgever
@@ -107,3 +109,5 @@ page.acs.title: Demo service provider ACS
 page.acs.sub_title: Demo serviceprovider ConsumerAssertionService endpoint
 
 page.sp.common_properties.title: Algemeene request parameters
+page.sp.service_name_en: Dienstnaam (en)
+page.sp.service_name_nl: Dienstnaam (nl)

@@ -22,3 +22,25 @@ Feature: When an user needs to authenticate
     # Returns to the SP
     And I should see "Demo Service provider ConsumerAssertionService endpoint"
     And I should see "test-name-id-1234"
+
+  Scenario: Service name from mdui DisplayName is shown during authentication
+    Given I am on "https://demogssp.dev.openconext.local/demo/sp"
+    Then I should see "Demo service provider"
+    And I fill in "Subject NameID" with "test-name-id-1234"
+    And I fill in "Service name (en)" with "My Test Service"
+    Given I press "Authenticate user"
+
+    Then I should be on "https://demogssp.dev.openconext.local/authentication"
+    And I should see "My Test Service"
+
+  Scenario: Service name matches the application's default locale when multiple languages are available
+    Given I am on "https://demogssp.dev.openconext.local/demo/sp"
+    Then I should see "Demo service provider"
+    And I fill in "Subject NameID" with "test-name-id-5678"
+    And I fill in "Service name (en)" with "My Test Service"
+    And I fill in "Service name (nl)" with "Mijn Testdienst"
+    Given I press "Authenticate user"
+
+    Then I should be on "https://demogssp.dev.openconext.local/authentication"
+    And I should see "My Test Service"
+    And I should not see "Mijn Testdienst"
