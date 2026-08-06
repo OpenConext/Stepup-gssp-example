@@ -3,7 +3,6 @@
   "license": "Apache-2.0",
   "description": "Example Generic SAML Stepup Provider.",
   "type": "project",
-  "minimum-stability": "dev",
   "prefer-stable": true,
   "repositories": [
     {
