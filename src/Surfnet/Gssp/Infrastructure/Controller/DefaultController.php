@@ -22,6 +22,7 @@ namespace Surfnet\Gssp\Infrastructure\Controller;
 
 use Surfnet\GsspBundle\Service\AuthenticationService;
 use Surfnet\GsspBundle\Service\RegistrationService;
+use Surfnet\GsspBundle\Service\ServiceName\ServiceNameResolver;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -75,9 +76,12 @@ class DefaultController extends AbstractController
         $requiresRegistration = $this->registrationService->registrationRequired();
         $response = new Response(null, $requiresRegistration ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
 
+        $serviceName = ServiceNameResolver::resolve($this->registrationService->getMdui(), $request->getLocale());
+
         return $this->render('default/registration.html.twig', [
             'requiresRegistration' => $requiresRegistration,
             'NameID' => uniqid('test-prefix-', true),
+            'serviceName' => $serviceName,
         ], $response);
     }
 
@@ -109,9 +113,12 @@ class DefaultController extends AbstractController
         $requiresAuthentication = $this->authenticationService->authenticationRequired();
         $response = new Response(null, $requiresAuthentication ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
 
+        $serviceName = ServiceNameResolver::resolve($this->authenticationService->getMdui(), $request->getLocale());
+
         return $this->render('default/authentication.html.twig', [
             'requiresAuthentication' => $requiresAuthentication,
             'NameID' => $nameId ?: 'unknown',
+            'serviceName' => $serviceName,
         ], $response);
     }
 }
