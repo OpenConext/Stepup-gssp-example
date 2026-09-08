@@ -16,8 +16,11 @@
       "Surfnet\\Gssp\\Test\\Features\\": "tests\\Functional\\Features"
     }
   },
+  "conflict": {
+    "simplesamlphp/saml2": ">=4.20.0 <4.21.0"
+  },
   "require": {
-    "php": "^8.2",
+    "php": "^8.5",
     "ext-dom": "*",
     "ext-libxml": "*",
     "ext-zlib": "*",
@@ -45,7 +48,7 @@
     "phpmd/phpmd": "^2.14",
     "phpstan/phpstan": "^2.1",
     "phpstan/phpstan-symfony": "^2.0",
-    "rector/rector": "^2.3",
+    "rector/rector": "^2.4",
     "slevomat/coding-standard": "^8.26",
     "soyuka/contexts": "^3.3",
     "squizlabs/php_codesniffer": "^4.0",
@@ -144,7 +147,8 @@
     "allow-plugins": {
       "symfony/flex": true,
       "dealerdirect/phpcodesniffer-composer-installer": true,
-      "symfony/runtime": true
+      "symfony/runtime": true,
+      "simplesamlphp/composer-xmlprovider-installer": false
     }
   }
 }
