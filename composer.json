@@ -23,13 +23,16 @@
       "Surfnet\\Gssp\\Test\\Unit\\": "tests\\Unit"
     }
   },
+  "conflict": {
+    "simplesamlphp/saml2": ">=4.20.0 <4.21.0"
+  },
   "require": {
-    "php": "^8.2",
+    "php": "^8.5",
     "ext-dom": "*",
     "ext-libxml": "*",
     "ext-zlib": "*",
     "incenteev/composer-parameter-handler": "^2.1",
-    "surfnet/stepup-gssp-bundle": "6.1.0-beta3",
+    "surfnet/stepup-gssp-bundle": "6.1.0-beta4",
     "symfony/asset": "^7.4",
     "symfony/console": "^7.4",
     "symfony/flex": "^2.3",
@@ -53,7 +56,7 @@
     "phpstan/phpstan": "^2.1",
     "phpstan/phpstan-symfony": "^2.0",
     "phpunit/phpunit": "^11",
-    "rector/rector": "^2.3",
+    "rector/rector": "^2.4",
     "slevomat/coding-standard": "^8.26",
     "soyuka/contexts": "^3.3",
     "squizlabs/php_codesniffer": "^4.0",
@@ -155,7 +158,8 @@
     "allow-plugins": {
       "symfony/flex": true,
       "dealerdirect/phpcodesniffer-composer-installer": true,
-      "symfony/runtime": true
+      "symfony/runtime": true,
+      "simplesamlphp/composer-xmlprovider-installer": false
     },
     "audit": {
       "ignore": {
