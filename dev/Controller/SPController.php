@@ -34,6 +34,8 @@ use Surfnet\SamlBundle\Http\Exception\AuthnFailedSamlResponseException;
 use Surfnet\SamlBundle\Http\PostBinding;
 use Surfnet\SamlBundle\SAML2\AuthnRequest;
 use Surfnet\SamlBundle\SAML2\AuthnRequestFactory;
+use Surfnet\SamlBundle\SAML2\Extensions\Extensions;
+use Surfnet\SamlBundle\SAML2\Extensions\MduiChunk;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use function is_bool;
@@ -66,6 +68,19 @@ final class SPController extends AbstractController
                 throw new Exception('NameID is not a string..');
             }
             $authnRequest->setSubject($nameId);
+        }
+
+        $serviceNameEn = $request->get('ServiceNameEn');
+        $serviceNameNl = $request->get('ServiceNameNl');
+        $serviceNames = array_filter(
+            [
+                'en' => is_string($serviceNameEn) ? $serviceNameEn : null,
+                'nl' => is_string($serviceNameNl) ? $serviceNameNl : null,
+            ],
+            static fn(?string $name): bool => $name !== null && $name !== ''
+        );
+        if ($serviceNames !== []) {
+            $authnRequest->setExtensions($this->buildMduiExtensions($serviceNames));
         }
 
         // Build request query parameters.
@@ -148,6 +163,28 @@ final class SPController extends AbstractController
             throw new Exception('Unable to create valid XML from the provided document');
         }
         return $result;
+    }
+
+    /**
+     * @param array<string, string> $namesByLang Non-empty map of xml:lang => display name.
+     */
+    private function buildMduiExtensions(array $namesByLang): Extensions
+    {
+        $chunk = new MduiChunk();
+        $doc = $chunk->getValue()->ownerDocument;
+        if ($doc === null) {
+            throw new Exception('MduiChunk DOMElement has no ownerDocument');
+        }
+        $ns = 'urn:oasis:names:tc:SAML:metadata:ui';
+        foreach ($namesByLang as $lang => $name) {
+            $el = $doc->createElementNS($ns, 'mdui:DisplayName');
+            $el->setAttribute('xml:lang', $lang);
+            $el->textContent = $name;
+            $chunk->getValue()->appendChild($el);
+        }
+        $extensions = new Extensions();
+        $extensions->addChunk($chunk);
+        return $extensions;
     }
 
     /**

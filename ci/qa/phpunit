@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+cd $(dirname $0)/../../
+
+if [ ! -d tests/Unit ]; then
+  echo "No unit tests found, skipping phpunit."
+  exit 0
+fi
+
+./vendor/bin/phpunit $1

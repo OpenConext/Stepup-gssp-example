@@ -83,6 +83,7 @@ page.registration.register_user: Register user
 page.registration.error_response: Error response
 page.registration.random_default_error: random registration error
 page.registration.submit_error: Return authentication failed
+page.registration.service_name: Service name
 
 page.authentication.title: Athenticate the user
 page.authentication.sub_title: Authentication
@@ -93,6 +94,7 @@ page.authentication.authenticate_user: Authenticate user
 page.authentication.error_response: Error response
 page.authentication.random_default_error: Random authentication error
 page.authentication.submit_error: Return authentication failed
+page.authentication.service_name: Service name
 
 saml.request_id: Request id
 saml.issuer: Issuer
@@ -114,3 +116,5 @@ page.acs.title: Demo Service provider ACS
 page.acs.sub_title: Demo Service provider ConsumerAssertionService endpoint
 
 page.sp.common_properties.title: Common request parameters
+page.sp.service_name_en: Service name (en)
+page.sp.service_name_nl: Service name (nl)

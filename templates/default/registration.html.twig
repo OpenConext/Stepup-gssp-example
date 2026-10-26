@@ -13,6 +13,13 @@
         </div>
     {% endif %}
 
+    {% if serviceName %}
+        <label>{{ 'page.registration.service_name'|trans }}</label>
+        <br>
+        <p style="background: white">{{ serviceName }}</p>
+        <br>
+    {% endif %}
+
     <form method="post">
         <label for="NameID">{{ 'saml.subject_name_id'|trans }}</label>
         <br>

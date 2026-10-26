@@ -25,3 +25,15 @@ Feature: When an user needs to register for a new token
     # Back at the SP.
     And I should see "Demo Service provider ConsumerAssertionService endpoint"
     And I should see "test-name-id-1234"
+
+  Scenario: Service name from mdui DisplayName is shown during registration
+    # The user request a registration from the service provider
+    Given I am on "https://demogssp.dev.openconext.local/demo/sp"
+    Then I should see "Demo service provider"
+    And I fill in "Service name (en)" with "My Test Service"
+    When I press "Register user"
+
+    # The user register himself at the IdP
+    Then I should see "Registration"
+    And I should be on "https://demogssp.dev.openconext.local/registration"
+    And I should see "My Test Service"
